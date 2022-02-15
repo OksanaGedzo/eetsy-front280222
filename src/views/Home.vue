@@ -1,18 +1,44 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+    {{this.primaryGroupObjects.length}}
+
+    <div v-for="category in primaryGroupObjects" class="row">
+      <div class="column"></div>
+    </div>
+
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+
 import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'Home',
   components: {
     HelloWorld
+  },
+  data: function () {
+    return {
+      primaryGroupObjects: {}
+    }
+  },
+  methods: {
+    getAllPrimaryGroups: function () {
+      this.$http.get("/getallprimarygroups/")
+          .then(response => {
+
+            this.primaryGroupObjects = response.data
+
+            console.log(response.data)
+          }).catch(error => {
+        console.log(error)
+      })
+    }
+  },
+  beforeMount() {
+    this.getAllPrimaryGroups()
   }
 }
 </script>
