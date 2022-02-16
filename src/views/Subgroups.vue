@@ -4,9 +4,12 @@
 
     <div class="gallery">
       <div class="gallery-panel" v-for="subCategory in subGroupObjects"
-           v-on:click="">
+           v-on:click="redirectToItemsPageWith(subCategory.name)">
         <img src="..\assets\logo.png">
-        {{ subCategory.name }}
+        <div class="item-grid">
+          Product name: {{ subCategory.name }}<br>
+
+        </div>
       </div>
     </div>
   </div>
@@ -27,8 +30,8 @@
   height: 22vw;
   object-fit: cover;
   border-radius: 0.75rem;
-}
 
+}
 </style>
 
 
@@ -54,7 +57,10 @@ export default {
       }).catch(error => {
         console.log(error)
       })
-    }
+    },
+    redirectToItemsPageWith: function (subGroupName) {
+      this.$router.push({name: 'Items', query: {name: subGroupName}})
+    },
   },
   beforeMount() {
     this.getAllSubGroupsByPrimaryGroupId(this.primaryGroupId)

@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Subgroups from "@/views/Subgroups";
+import Items from "@/views/Items";
+import Product from "@/views/Product";
 
 Vue.use(VueRouter)
 
@@ -10,6 +12,16 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/product',
+    name: 'Product',
+    component: Product
+  },
+  {
+    path: '/items',
+    name: 'Items',
+    component: Items
   },
   {
     path: '/subgroups',

@@ -1,12 +1,12 @@
 <template>
   <div class="home">
 
-<!--    {{this.primaryGroupObjects.length}}-->
-<!--    {{this.primaryGroupObjects}}-->
+    <!--    {{this.primaryGroupObjects.length}}-->
+    <!--    {{this.primaryGroupObjects}}-->
 
-    <div  class="gallery">
+    <div class="gallery">
       <div class="gallery-panel" v-for="category in primaryGroupObjects"
-      v-on:click="redirectToSubgroupPageWith(category.id)">
+           v-on:click="redirectToSubgroupPageWith(category.id)">
         <img src="..\assets\logo.png">
         {{ category.name }}
 
@@ -64,24 +64,9 @@ export default {
     },
 
     redirectToSubgroupPageWith: function (primaryGroupId) {
-      this.$router.push({name: 'Subgroups', query:{id: primaryGroupId}})
+      this.$router.push({name: 'Subgroups', query: {id: primaryGroupId}})
 
     },
-
-    // toSubGroup: function (idCodeParam) {
-    //   this.$http.get("/about", {
-    //         params: {
-    //           id: idCodeParam
-    //         }
-    //       }
-    //   ).then(response => {
-    //
-    //     console.log(this.id)
-    //   }).catch(error => {
-    //     console.log(error)
-    //   })
-    // }
-
   },
   beforeMount() {
     this.getAllPrimaryGroups()
