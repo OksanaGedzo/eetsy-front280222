@@ -5,15 +5,10 @@
 <!--    {{this.primaryGroupObjects}}-->
 
     <div  class="gallery">
-      <div class="gallery-panel" v-for="category in primaryGroupObjects">
-
-<!--          <img @click="toSubGroup(category.id)" src="..\assets\logo.png">-->
-
-        <router-link :to="{path:'/about'+'?id='+category.id}">
-
-          <img src="..\assets\logo.png">
-
-        </router-link>
+      <div class="gallery-panel" v-for="category in primaryGroupObjects"
+      v-on:click="redirectToSubgroupPageWith(category.id)">
+        <img src="..\assets\logo.png">
+        {{ category.name }}
 
       </div>
     </div>
@@ -53,12 +48,11 @@ export default {
   data: function () {
     return {
       primaryGroupObjects: {},
-      chunkedPrimaryGroup: {},
     }
   },
   methods: {
     getAllPrimaryGroups: function () {
-      this.$http.get("/getallprimarygroups/")
+      this.$http.get("/get/all/primarygroups/")
           .then(response => {
 
             this.primaryGroupObjects = response.data
@@ -67,6 +61,11 @@ export default {
           }).catch(error => {
         console.log(error)
       })
+    },
+
+    redirectToSubgroupPageWith: function (primaryGroupId) {
+      this.$router.push({name: 'Subgroups', query:{id: primaryGroupId}})
+
     },
 
     // toSubGroup: function (idCodeParam) {
