@@ -6,7 +6,7 @@
     User Name <input v-model="userName">
     User Password <input type="password" v-model="userPassword">
     <br>
-    <button v-on:click="loginUser(); redirectToMainPage(this.userId)">LOG IN</button>
+    <button v-on:click="loginUser()">LOG IN</button>
   </div>
 </div>
 </template>
@@ -31,8 +31,9 @@ export default {
             }
           }
       ).then(response => {
-        this.userId = response.data.id
+        this.userId = response.data
         // this.redirectToMainPage(this.userId),
+        localStorage.setItem('UserIdToken', this.userId)
         console.log(response.data)
       }).catch(error => {
         alert("USER OR PASSWORD WRONG")
