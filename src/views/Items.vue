@@ -3,9 +3,10 @@
     {{ this.subGroupName }}
 
     <div class="gallery">
-      <div class="gallery-panel" v-for="item in itemObjects"
-           v-on:click="redirectToProductPage(item.id)">
+      <div class="gallery-panel" v-for="item in itemObjects" role="button"
+           v-on:click="redirectToProductPage(item.itemId)">
         <img src="..\assets\logo.png">
+        Item id: {{item.itemId}}<br>
         Price: {{ item.itemPrice }}<br>
         Description: {{ item.itemDescription }}
       </div>

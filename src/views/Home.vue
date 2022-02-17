@@ -3,7 +3,7 @@
 
     <!--    {{this.primaryGroupObjects.length}}-->
     <!--    {{this.primaryGroupObjects}}-->
-
+{{this.userId}}
     <div class="gallery">
       <div class="gallery-panel" v-for="category in primaryGroupObjects"
            v-on:click="redirectToSubgroupPageWith(category.id)">
@@ -48,6 +48,7 @@ export default {
   data: function () {
     return {
       primaryGroupObjects: {},
+      userId: this.$route.query.userId,
     }
   },
   methods: {

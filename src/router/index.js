@@ -4,6 +4,8 @@ import Home from '../views/Home.vue'
 import Subgroups from "@/views/Subgroups";
 import Items from "@/views/Items";
 import Product from "@/views/Product";
+import Signup from "@/views/Signup";
+import Login from "@/views/Login";
 
 Vue.use(VueRouter)
 
@@ -12,6 +14,16 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/signup',
+    name: 'Signup',
+    component: Signup
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
   },
   {
     path: '/product',
