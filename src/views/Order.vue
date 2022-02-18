@@ -1,20 +1,21 @@
 <template>
-  <div >
+  <div>
     <img alt="Vue logo" src="../assets/logo.png">
     <h1>Shopping cart order</h1>
     <div>
+      Order Number: {{ orderNumber }}
+      <br>
       <div v-for="row in order">
-        OrderId: {{ row.orderId }}<br>
-        OrderItemId: {{ row.orderItemId }}<br>
+        OrderItemsByOrderId: {{ row.orderItemsByOrderId }}<br>
         ItemName: {{ row.itemName }}<br>
-        Picture: {{ row.pictureItemId }}<br>
+        Picture: {{ row.itemPictureId }}<br>
         Price: {{ row.itemPrice }}<br>
-        SubTotal: {{ row.orderItemSum }}<br>
         Quantity: {{ row.orderItemQuantity }}<br>
-        Delivery methods :{{ row.deliveryMethods() }}<br>
         Total sum: {{ row.orderItemSum }}<br>
-        Payment methods :{{ row.paymentMethods }}<br>
       </div>
+      <br>
+      TOTAL PRICE: {{ 'ghh  method  jj' }}
+      <br>
       <br>
       <button v-on:click="redirectToConfirmPage(orderId.id)">Confirm the order</button>
       <br>
@@ -29,10 +30,11 @@ export default {
   data: function () {
     return {
       orderId: '',
-      orderItemByOrderId: this.$route.query.orderItemId,
+      orderNumber: '',
+      userId: '',
+      orderItemsByOrderId: this.$route.query.orderItemId,
       order: {},
       deliveryMethods: '',
-      orderIdQuantity: '',
       orderItemSum: '',
       paymentMethods: ''
     }
@@ -57,24 +59,23 @@ export default {
       })
     },
 
-    getOrderItemByOrderId: function () {
+    getOrderItemsByOrderId: function () {
       this.$http.get("/get/order/items/by/order/id")
           .then(response => {
-            this.orderItemByOrderId = response.data
+            this.orderItemsByOrderId = response.data
             console.log(response.data)
           }).catch(error => {
         console.log(error)
       })
     },
 
-    getOrderId: function (id) {
-      this.$http.get("get/order/id", {
+    getOrderNumber: function (userId) {
+      this.$http.get("/get/open/order/by/user/id", {
             params: {
-              orderId: id
+              userId: userId
             }
-          }
-      ).then(response => {
-        this.orderId = response.data
+          }).then(response => {
+        this.orderNumber = response.data
         console.log(response.data)
       }).catch(error => {
         console.log(error)
@@ -87,10 +88,10 @@ export default {
 
   },
   beforeMount() {
-    this.getOrderItemByOrderId(this.orderItemByOrderId)
+    this.getOrderItemsByOrderId(this.orderItemsByOrderId)
     this.getDeliveryMethods(this.deliveryMethods)
     this.getPaymentMethods(this.paymentMethods)
-    this.getOrderId(this.orderId)
+    this.getOrderNumber(this.orderNumber)
   }
 }
 </script>

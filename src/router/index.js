@@ -7,10 +7,16 @@ import Item from "@/views/Item";
 import Signup from "@/views/Signup";
 import Login from "@/views/Login";
 import Order from "@/views/Order";
+import Admin from "@/views/Admin";
 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: Admin
+  },
   {
     path: '/order',
     name: 'Order',

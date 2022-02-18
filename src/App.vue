@@ -4,6 +4,7 @@
       <router-link to="/">Home |</router-link>
       <router-link to="/about">About |</router-link>
       <router-link to="/order">Order |</router-link>
+      <router-link to="/admin">Admin |</router-link>
       <router-link v-if="!this.userIsLoggedIn" to="/login">Login |</router-link>
       <router-link v-if="!this.userIsLoggedIn" to="/signup">Sign Up |</router-link>
       <a href="/" v-if="this.userIsLoggedIn" v-on:click="logUserOut">Log Out</a>
