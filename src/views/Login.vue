@@ -34,15 +34,15 @@ export default {
         this.userId = response.data
         localStorage.setItem('UserIdToken', this.userId);
         alert("Login success.")
-        this.redirectToMainPage(this.userId)
+        this.redirectToMainPage()
         console.log(response.data)
       }).catch(error => {
         alert("USER OR PASSWORD WRONG")
         console.log(error)
       })
     },
-    redirectToMainPage: function (userId) {
-      this.$router.push({name: 'Home', query: {userId: userId}})
+    redirectToMainPage: function () {
+      this.$router.push({name: 'Home'})
     },
   }
 
