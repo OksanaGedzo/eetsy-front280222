@@ -32,8 +32,9 @@ export default {
           }
       ).then(response => {
         this.userId = response.data
-        // this.redirectToMainPage(this.userId),
-        localStorage.setItem('UserIdToken', this.userId)
+        localStorage.setItem('UserIdToken', this.userId);
+        alert("Login success.")
+        this.redirectToMainPage(this.userId)
         console.log(response.data)
       }).catch(error => {
         alert("USER OR PASSWORD WRONG")
@@ -42,11 +43,6 @@ export default {
     },
     redirectToMainPage: function (userId) {
       this.$router.push({name: 'Home', query: {userId: userId}})
-      // this.$router.push({name: 'Items', query: {userId: this.userId}})
-      // this.$router.push({name: 'Product', query: {userId: this.userId}})
-      // this.$router.push({name: 'Subgroups', query: {userId: this.userId}})
-
-      // todo FINISH ME FORWARD ALL USERIDS TO THE NEXT PAGES
     },
   }
 
