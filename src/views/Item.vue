@@ -40,7 +40,7 @@ export default {
         console.log(error)
       })
     },
-    //TODO VAATA ÜLE PUSHITAVAD PARAMID
+    //TODO VAATA ÜLE PUSHITAVAD PARAMID JA ÜHENDA ÄRA
     redirectToShoppingCartPage: function () {
       this.$router.push({name: 'Order', query: {itemId: this.itemId, itemQuantity: this.itemQuantity}})
     },
