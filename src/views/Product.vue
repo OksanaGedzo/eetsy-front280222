@@ -2,27 +2,13 @@
   <div>
 
     ITEM TITLE: {{ itemObject.name }} <br>
-    ITEM SELLER: {{ itemObject.seller.name }} <br>
+    ITEM SELLER: {{ itemSellerObject.name}} <br>
     ITEM DESCRIPTION: {{ itemObject.description }} <br>
     ITEM PRICE: {{ itemObject.price }} <br>
     PILT: siia tuleb pilt
     <input type="number" value="1" v-model="itemQuantity">
     <button v-on:click="redirectToShoppingCartPage"> ADD TO CART</button>
-    <div>
 
-    </div>
-    <div>
-
-    </div>
-    <div>
-
-    </div>
-    <div>
-
-    </div>
-    <div>
-
-    </div>
   </div>
 
 </template>
@@ -46,7 +32,8 @@ export default {
             }
           }
       ).then(response => {
-        this.itemObject = response.data
+        this.itemObject = response.data,
+        this.itemSellerObject = response.data.seller,
         console.log(response.data)
       }).catch(error => {
         console.log(error)
