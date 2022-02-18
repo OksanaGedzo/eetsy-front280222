@@ -14,10 +14,33 @@
         Total sum: {{ row.orderItemSum }}<br>
       </div>
       <br>
-      TOTAL PRICE: {{ 'ghh  method  jj' }}
-      <br>
-      <br>
-      <button v-on:click="redirectToConfirmPage(orderId.id)">Confirm the order</button>
+      <div class="selDiv">
+        <select class="opts">
+          <option selected value="DEFAULT">Vali delivery method</option>
+          <option value="SEL1">Itella</option>
+          <option value="SEL2">Omniva</option>
+          <option value="SEL2">StarShip</option>
+          <option value="SEL2">Kuller</option>
+        </select>
+        <br>
+        <br>
+        <select class="opts">
+          <option selected value="DEFAULT">Vali payment method</option>
+          <option value="SEL1">Bank</option>
+          <option value="SEL2">PayPal</option>
+          <option value="SEL2">Sularaha</option>
+          <option value="SEL2">MetaMask</option>
+        </select>
+        <br>
+        <br>
+        TOTAL PRICE: {{ 'ghh  method  jj' }}
+        <br>
+        <br>
+        <button v-on:click="redirectToConfirmPage(orderId.id)">Confirm the order</button>
+        <br>
+        <br>
+        <br>
+      </div>
       <br>
     </div>
   </div>
@@ -40,6 +63,8 @@ export default {
     }
   },
   methods: {
+
+
     getDeliveryMethods: function () {
       this.$http.get("/get/all/delivery/methods", {}
       ).then(response => {
@@ -49,6 +74,8 @@ export default {
         console.log(error)
       })
     },
+
+
     getPaymentMethods: function () {
       this.$http.get("/get/all/payment/methods", {}
       ).then(response => {
@@ -71,10 +98,10 @@ export default {
 
     getOrderNumber: function (userId) {
       this.$http.get("/get/open/order/by/user/id", {
-            params: {
-              userId: userId
-            }
-          }).then(response => {
+        params: {
+          userId: userId
+        }
+      }).then(response => {
         this.orderNumber = response.data
         console.log(response.data)
       }).catch(error => {
@@ -86,7 +113,21 @@ export default {
       this.$router.push({name: 'Confirm', query: {id: orderId}})
     }
 
+    // }, $(function() {
+    //   $('#deliveriorpaymentframe').change(function () {
+    //     var valik = $(this).find(':selected').val();
+    //     if (valik == 'str1') {
+    //       $('.element').text('row 1');
+    //     } else if (valik == 'str2') {
+    //       $('.element').text('row 2');
+    //     } else if (valik == 'str3') {
+    //       $('.element').text('row 3');
+    //     }
+    //   });
+
   },
+
+
   beforeMount() {
     this.getOrderItemsByOrderId(this.orderItemsByOrderId)
     this.getDeliveryMethods(this.deliveryMethods)
