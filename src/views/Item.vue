@@ -7,7 +7,8 @@
     ITEM PRICE: {{ itemObject.price }} <br>
     PILT: siia tuleb pilt
     <input type="number" value="1" v-model="itemQuantity">
-    <button v-on:click="redirectToShoppingCartPage"> ADD TO CART</button>
+    <button v-on:click=""> ADD TO CART</button>
+    //TODO ÜHENDA MERIKESE ENDPOINDIGA
 
   </div>
 
@@ -39,6 +40,7 @@ export default {
         console.log(error)
       })
     },
+    //TODO VAATA ÜLE PUSHITAVAD PARAMID
     redirectToShoppingCartPage: function () {
       this.$router.push({name: 'Order', query: {itemId: this.itemId, itemQuantity: this.itemQuantity}})
     },
