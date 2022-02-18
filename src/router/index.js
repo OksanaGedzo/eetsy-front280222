@@ -6,10 +6,16 @@ import Items from "@/views/Items";
 import Product from "@/views/Product";
 import Signup from "@/views/Signup";
 import Login from "@/views/Login";
+import Order from "@/views/Order";
 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/order',
+    name: 'Order',
+    component: Order
+  },
   {
     path: '/',
     name: 'Home',
