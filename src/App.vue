@@ -39,3 +39,33 @@
   color: #42b983;
 }
 </style>
+
+<script>
+export default {
+  name: "App",
+  data: function() {
+    return {
+    userIsLoggedIn: false
+        }
+    },
+    methods: {
+      isUserLoggedIn: function(){
+        if (localStorage.getItem("UserIdToken") === null){
+          this.userIsLoggedIn = false;
+          alert("id is null")
+        }
+        else{
+          this.userIsLoggedIn = true;
+          alert("id exists")
+        }
+      },
+    logUserOut: function(){
+      localStorage.removeItem('UserIdToken');
+      this.userIsLoggedIn = false
+    },
+    beforeMount(){
+            this.isUserLoggedIn;
+    },
+  }
+}
+</script>
