@@ -2,8 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Subgroups from "@/views/Subgroups";
-import Items from "@/views/Items";
-import Product from "@/views/Product";
+import Itemlist from "@/views/Itemlist";
+import Item from "@/views/Item";
 import Signup from "@/views/Signup";
 import Login from "@/views/Login";
 import Order from "@/views/Order";
@@ -32,14 +32,14 @@ const routes = [
     component: Login
   },
   {
-    path: '/product',
-    name: 'Product',
-    component: Product
+    path: '/item',
+    name: 'Item',
+    component: Item
   },
   {
-    path: '/items',
-    name: 'Items',
-    component: Items
+    path: '/itemlist',
+    name: 'Itemlist',
+    component: Itemlist
   },
   {
     path: '/subgroups',

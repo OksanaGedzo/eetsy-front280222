@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: "Items",
+  name: "ItemList",
   data: function () {
     return {
       subGroupName: this.$route.query.name,
@@ -39,7 +39,7 @@ export default {
       })
     },
     redirectToProductPage: function (itemId) {
-      this.$router.push({name: 'Product', query: {id: itemId}})
+      this.$router.push({name: 'Item', query: {id: itemId}})
     },
 
   },

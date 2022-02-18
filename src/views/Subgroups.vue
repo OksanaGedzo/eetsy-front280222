@@ -7,7 +7,7 @@
            v-on:click="redirectToItemsPageWith(subCategory.name)">
         <img src="..\assets\logo.png">
         <div class="item-grid">
-          Product name: {{ subCategory.name }}<br>
+          {{ subCategory.name }}<br>
 
         </div>
       </div>
@@ -59,7 +59,7 @@ export default {
       })
     },
     redirectToItemsPageWith: function (subGroupName) {
-      this.$router.push({name: 'Items', query: {name: subGroupName}})
+      this.$router.push({name: 'Itemlist', query: {name: subGroupName}})
     },
   },
   beforeMount() {

@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: "Product",
+  name: "Item",
   data: function () {
     return {
       itemId: this.$route.query.id,
@@ -40,7 +40,7 @@ export default {
       })
     },
     redirectToShoppingCartPage: function () {
-      this.$router.push({name: 'ShoppingCart', query: {itemId: this.itemId, itemQuantity: this.itemQuantity}})
+      this.$router.push({name: 'Order', query: {itemId: this.itemId, itemQuantity: this.itemQuantity}})
     },
   },
   // computed: {
