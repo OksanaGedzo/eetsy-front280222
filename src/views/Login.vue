@@ -8,8 +8,6 @@
       <br>
       <button v-on:click="loginUser()">LOG IN</button>
       <br>
-      testObjectFromToken value:
-      <input disabled v-model="testObjectFromToken">
 
     </div>
   </div>
