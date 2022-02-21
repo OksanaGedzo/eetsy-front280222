@@ -82,6 +82,14 @@
     <span>Delivery method: {{selected}} </span>
     <br>
     <br>
+    <select v-model="selectedP">
+      <option disabled value="">Vali payment method</option>
+      <option v-for="row in paymentMethods" :value="row.paymentType ">{{row.paymentType}} </option>
+    </select>
+    <br>
+    <span>Payment method: {{selectedP}} </span>
+    <br>
+    <br>
     <br>
     <br>
     <select class="opts">
@@ -141,7 +149,8 @@ export default {
       paymentMethods: [],
       deliveryMethods: [],
 
-      selected :""
+      selected :"",
+      selectedP :""
 
     }
   },
