@@ -60,6 +60,7 @@ export default {
       deliveryMethods: '',
       orderItemSum: '',
       paymentMethods: ''
+
     }
   },
   methods: {

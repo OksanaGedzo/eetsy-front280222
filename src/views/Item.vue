@@ -2,13 +2,12 @@
   <div>
 
     ITEM TITLE: {{ itemObject.name }} <br>
-    ITEM SELLER: {{ itemSellerObject.name}} <br>
+    ITEM SELLER: {{ itemSellerObject.name }} <br>
     ITEM DESCRIPTION: {{ itemObject.description }} <br>
     ITEM PRICE: {{ itemObject.price }} <br>
     PILT: siia tuleb pilt
     <input type="number" value="1" v-model="itemQuantity">
-    <button v-on:click=""> ADD TO CART</button>
-    //TODO ÜHENDA MERIKESE ENDPOINDIGA
+    <button v-on:click="addOrderItemToDatabase"> ADD TO CART</button>
 
   </div>
 
@@ -22,7 +21,15 @@ export default {
       itemId: this.$route.query.id,
       itemObject: {},
       itemSellerObject: {},
-      itemQuantity: ''
+      itemQuantity: '',
+      userIsLoggedIn: false,
+      itemObjectRequest: {
+        "userId": null,
+        "itemId": null,
+        "quantity": null,
+
+      }
+
     }
   },
   methods: {
@@ -34,17 +41,38 @@ export default {
           }
       ).then(response => {
         this.itemObject = response.data,
-        this.itemSellerObject = response.data.seller,
-        console.log(response.data)
+            this.itemSellerObject = response.data.seller,
+            console.log(response.data)
       }).catch(error => {
         console.log(error)
       })
     },
-    //TODO VAATA ÜLE PUSHITAVAD PARAMID JA ÜHENDA ÄRA
-    redirectToShoppingCartPage: function () {
-      this.$router.push({name: 'Order', query: {itemId: this.itemId, itemQuantity: this.itemQuantity}})
-    },
+    isUserLoggedIn: function () {
+      if (localStorage.getItem("UserIdToken") === null) {
+        this.userIsLoggedIn = false;
+        return false;
+      } else {
+        this.userIsLoggedIn = true;
+        return true;
+      }
+    }, addOrderItemToDatabase: function () {
+      if (this.isUserLoggedIn) {
+        this.itemObjectRequest.itemId = this.itemId
+        this.itemObjectRequest.userId = localStorage.getItem("UserIdToken")
+        this.itemObjectRequest.quantity = this.itemQuantity
+        this.$http.post("/add/orderitem/to/cart", this.itemObjectRequest
+        ).then(response => {
+          console.log(response.data)
+          alert(response.data.message +""+ response.data.error)
+        }).catch(error => {
+          console.log(error)
+        })
+      } else {
+        alert("please log in")
+      }
+    }
   },
+
   // computed: {
   //   dataUrl() {
   //     return 'data:image/jpeg;base64,' + btoa(
