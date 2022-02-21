@@ -3,17 +3,76 @@
     <img alt="Vue logo" src="../assets/logo.png">
     <h1>Shopping cart order</h1>
     Order Number: {{ orderNumber }}
-    <!--    <div>-->
-    <!--      Order Number: {{ orderNumber }}-->
-    <!--      <br>-->
-    <!--      <div v-for="row in order">-->
-    <!--        OrderItemsByOrderId: {{ row.orderItemsByOrderId }}<br>-->
-    <!--        ItemName: {{ row.itemName }}<br>-->
-    <!--        Picture: {{ row.itemPictureId }}<br>-->
-    <!--        Price: {{ row.itemPrice }}<br>-->
-    <!--        Quantity: {{ row.orderItemQuantity }}<br>-->
-    <!--        Total sum: {{ row.orderItemSum }}<br>-->
-    <!--      </div>-->
+<!--        <ol>-->
+<!--          <li v-for=" row in orderItemDtos">-->
+<!--            {{ row.itemName }} - -->
+<!--            {{ row.itemPrice }} eur- -->
+<!--            {{ row.quantity }} tk - -->
+<!--            {{ row.sum }} eur-->
+<!--          </li>-->
+<!--        </ol>-->
+    <div v-if="orderItemDtos.length > 0">
+      <table>
+        <tr>
+          <th>ITEM ID</th>
+          <th>ITEM NAME</th>
+          <th>ITEM PRICE</th>
+          <th>ITEM QUANTITY</th>
+          <th>ITEM SUM</th>
+        </tr>
+        <tr v-for="row in orderItemDtos">
+          <td>{{ row.itemId }}</td>
+          <td>{{ row.itemName }}</td>
+          <td>{{ row.itemPrice }}</td>
+          <td>{{ row.quantity }}</td>
+          <td>{{ row.sum }}</td>
+        </tr>
+      </table>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div v-if="deliveryMethods.length > 0">
+      <table>
+        <tr>
+          <th>DELIVERY ID</th>
+          <th>DELIVERY PRICE</th>
+          <th>DELIVERY NAME</th>
+          <th>DELIVERY TIME</th>
+          <th>NUPP</th>
+        </tr>
+        <tr v-for="row in deliveryMethods">
+          <td>{{ row.id }}</td>
+          <td>{{ row.price }}</td>
+          <td>{{ row.name }}</td>
+          <td>{{ row.deliveryTime }}</td>
+          <td>
+            <button v-on:click="">Vali mind</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div v-if="paymentMethods.length > 0">
+      <table>
+        <tr>
+          <th>PAYMENT ID</th>
+          <th>PAYMENT TYPE</th>
+          <th>NUPP</th>
+        </tr>
+        <tr v-for="row in paymentMethods">
+          <td>{{ row.id }}</td>
+          <td>{{ row.paymentType }}</td>
+          <td>
+            <button v-on:click="">Vali mind</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+
     <br>
     <!--      <div class="selDiv">-->
     <!--        <select class="opts">-->
@@ -25,9 +84,6 @@
     <!--        </select>-->
     <br>
     <br>
-    <ol>
-      <li v-for=" row in orderItemDtos" > {{row.itemName}} - {{row.itemPrice}} eur- {{row.quantity}} tk - {{row.sum}} eur</li>
-    </ol>
     <select class="opts">
       <option selected value="DEFAULT">Vali payment method</option>
       <option v-for="row in paymentMethods" :value="row.id">{{ row.paymentType }}</option>
