@@ -45,7 +45,7 @@ export default {
     },
 
     isUserLoggedIn: function () {
-      if (localStorage.getItem("UserIdToken") === null) {
+      if (sessionStorage.getItem("UserIdToken") === null) {
         this.userIsLoggedIn = false;
         return false;
       } else {
@@ -57,7 +57,7 @@ export default {
     addOrderItemToDatabase: function () {
       if (this.isUserLoggedIn) {
         this.itemObjectRequest.itemId = this.itemId
-        this.itemObjectRequest.userId = localStorage.getItem("UserIdToken")
+        this.itemObjectRequest.userId = sessionStorage.getItem("UserIdToken")
         this.itemObjectRequest.quantity = this.itemQuantity
         this.$http.post("/add/orderitem/to/cart", this.itemObjectRequest
         ).then(response => {

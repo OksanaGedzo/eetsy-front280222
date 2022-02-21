@@ -51,7 +51,7 @@ export default {
     },
     methods: {
       isUserLoggedIn: function(){
-        if (localStorage.getItem("UserIdToken") === null){
+        if (sessionStorage.getItem("UserIdToken") === null){
           this.userIsLoggedIn = false;
           alert("id is null")
         }
@@ -61,7 +61,7 @@ export default {
         }
       },
     logUserOut: function(){
-      localStorage.removeItem('UserIdToken');
+      sessionStorage.removeItem('UserIdToken');
       this.userIsLoggedIn = false
     },
     beforeMount(){

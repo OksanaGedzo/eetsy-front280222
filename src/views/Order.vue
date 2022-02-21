@@ -64,46 +64,20 @@ export default {
     }
   },
   methods: {
-
-
-    getDeliveryMethods: function () {
-      this.$http.get("/get/all/delivery/methods", {}
+    getShoppingCart: function () {
+      this.$http.get("/get/shopping/cart", {
+            params: {
+              userId: this.userId
+            }
+          }
       ).then(response => {
-        this.deliveryMethods = response.data
-        console.log(response.data)
-      }).catch(error => {
-        console.log(error)
-      })
-    },
+        this.paymentMethods = response.data.paymentMethodDtos;
+        this.deliveryMethods = response.data.deliveryMethodDtos;
+        this.orderItemDtos = response.data.orderItemDtos;
+        this.orderId = response.data.orderId;
+        this.orderNumber = response.data.orderNumber;
 
 
-    getPaymentMethods: function () {
-      this.$http.get("/get/all/payment/methods", {}
-      ).then(response => {
-        this.paymentMethods = response.data
-        console.log(response.data)
-      }).catch(error => {
-        console.log(error)
-      })
-    },
-
-    getOrderItemsByOrderId: function () {
-      this.$http.get("/get/order/items/by/order/id")
-          .then(response => {
-            this.orderItemsByOrderId = response.data
-            console.log(response.data)
-          }).catch(error => {
-        console.log(error)
-      })
-    },
-
-    getOrderNumber: function (userId) {
-      this.$http.get("/get/open/order/by/user/id", {
-        params: {
-          userId: userId
-        }
-      }).then(response => {
-        this.orderNumber = response.data
         console.log(response.data)
       }).catch(error => {
         console.log(error)

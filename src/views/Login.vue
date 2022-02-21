@@ -39,7 +39,7 @@ export default {
         this.userId = response.data
 
         //UserIdTokenit kutsume välja App.vue meetodis
-        localStorage.setItem('UserIdToken', this.userId);
+        sessionStorage.setItem('UserIdToken', this.userId);
         this.checkForOpenUserOrder(this.userId);
         alert("Login success.")
         this.redirectToMainPage()
