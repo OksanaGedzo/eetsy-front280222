@@ -75,7 +75,7 @@ export default {
       userId: sessionStorage.getItem("UserIdToken"),
       orderItemsByOrderId: this.$route.query.orderItemId,
       order: {},
-      deliveryMethods: '',
+
       orderItemSum: '',
 
       orderItemDtos: [],
