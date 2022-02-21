@@ -2,7 +2,7 @@
   <div>
 
     ITEM TITLE: {{ itemObject.name }} <br>
-    ITEM SELLER: {{ itemSellerObject.name }} <br>
+    ITEM SELLER: {{ itemObject.sellerName }} <br>
     ITEM DESCRIPTION: {{ itemObject.description }} <br>
     ITEM PRICE: {{ itemObject.price }} <br>
     PILT: siia tuleb pilt
@@ -20,16 +20,13 @@ export default {
     return {
       itemId: this.$route.query.id,
       itemObject: {},
-      itemSellerObject: {},
       itemQuantity: '',
       userIsLoggedIn: false,
       itemObjectRequest: {
         "userId": null,
         "itemId": null,
         "quantity": null,
-
       }
-
     }
   },
   methods: {
@@ -41,12 +38,12 @@ export default {
           }
       ).then(response => {
         this.itemObject = response.data,
-            this.itemSellerObject = response.data.seller,
             console.log(response.data)
       }).catch(error => {
         console.log(error)
       })
     },
+
     isUserLoggedIn: function () {
       if (localStorage.getItem("UserIdToken") === null) {
         this.userIsLoggedIn = false;
@@ -55,7 +52,9 @@ export default {
         this.userIsLoggedIn = true;
         return true;
       }
-    }, addOrderItemToDatabase: function () {
+    }
+    ,
+    addOrderItemToDatabase: function () {
       if (this.isUserLoggedIn) {
         this.itemObjectRequest.itemId = this.itemId
         this.itemObjectRequest.userId = localStorage.getItem("UserIdToken")
@@ -63,7 +62,7 @@ export default {
         this.$http.post("/add/orderitem/to/cart", this.itemObjectRequest
         ).then(response => {
           console.log(response.data)
-          alert(response.data.message +""+ response.data.error)
+          alert(response.data.message + "" + response.data.error)
         }).catch(error => {
           console.log(error)
         })
@@ -72,15 +71,14 @@ export default {
       }
     }
   },
-
-  // computed: {
-  //   dataUrl() {
-  //     return 'data:image/jpeg;base64,' + btoa(
-  //         new Uint8Array(this.itemObject.seller.logoPicture)
-  //             .reduce((data, byte) => data + String.fromCharCode(byte), '')
-  //     );
-  //   }
-  // },
+// computed: {
+//   dataUrl() {
+//     return 'data:image/jpeg;base64,' + btoa(
+//         new Uint8Array(this.itemObject.seller.logoPicture)
+//             .reduce((data, byte) => data + String.fromCharCode(byte), '')
+//     );
+//   }
+// },
   beforeMount() {
     this.getItemById(this.itemId)
   }
