@@ -88,10 +88,13 @@
       <option selected value="DEFAULT">Vali payment method</option>
       <option v-for="row in paymentMethods" :value="row.id">{{ row.paymentType }}</option>
     </select>
+    <br>
+    <br>
     <select class="opts">
       <option selected value="DEFAULT">Vali delivery method</option>
       <option v-for="row in deliveryMethods" :value="row.id">{{ row.name }}</option>
     </select>
+
     <!--        TOTAL PRICE: {{ 'ghh  method  jj' }}-->
     <!--        <button v-on:click="redirectToConfirmPage(orderId.id)">Confirm the order</button>-->
     <!--      </div>
