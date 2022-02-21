@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import {eventBus} from "@/main.js";
 export default {
   name: "Login",
   data: function () {
@@ -36,8 +37,10 @@ export default {
             }
           }
       ).then(response => {
-        this.userId = response.data
 
+        eventBus.$emit('fireMethod', 'misiganes tekst või väärtus vms');
+
+        this.userId = response.data
         //UserIdTokenit kutsume välja App.vue meetodis
         sessionStorage.setItem('UserIdToken', this.userId);
         this.checkForOpenUserOrder(this.userId);
@@ -50,7 +53,7 @@ export default {
       })
     },
     redirectToMainPage: function () {
-      this.$router.push({name: 'About'})
+      this.$router.push({name: 'Home'})
     },
     checkForOpenUserOrder: function () { //todo
       this.$http.get("/check/for/open/order/by/user/id", {

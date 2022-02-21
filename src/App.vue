@@ -5,14 +5,12 @@
       <router-link to="/about">About |</router-link>
       <router-link to="/order">Order |</router-link>
       <router-link to="/admin">Admin |</router-link>
-      <router-link v-if="!this.userIsLoggedIn" to="/login">Login |</router-link>
-      <router-link v-if="!this.userIsLoggedIn" to="/signup">Sign Up |</router-link>
-      <a href="/" v-if="this.userIsLoggedIn" v-on:click="logUserOut">Log Out</a>
-      {{this.userIsLoggedIn}}
-      <!-- navbari element ei refreshi ennast kui seal sees ei toimu mingit tüüpi event, näiteks nupu vajutus -->
+      <router-link id="loginLink"  to="/login">Login |</router-link>
+      <router-link id ="signupLink"  to="/signup">Sign Up |</router-link>
+      <a href="/" id="logoutLink" style="display: none" v-on:click="logUserOut">Log Out</a>
 
       <button v-on:click="isUserLoggedIn">Check if user is logged in</button>
-
+      <textarea :placeholder="someText"></textarea>
     </div>
     <router-view />
   </div>
@@ -42,22 +40,39 @@
 </style>
 
 <script>
+import {eventBus} from "@/main.js";
 export default {
   name: "App",
   data: function() {
     return {
-    userIsLoggedIn: false
+    userIsLoggedIn: false,
+    someText: null
         }
     },
+    created () {
+          eventBus.$on('fireMethod', (event) => {
+            this.someText = event;
+            console.log('bus fired')
+            
+            this.isUserLoggedIn();
+            this.hideTheDamnThingsAlready()
+    })
+    },
     methods: {
+hideTheDamnThingsAlready: function() {
+  document.getElementById('loginLink').style.display = "none";
+  document.getElementById('signupLink').style.display = "none";
+  document.getElementById('logoutLink').style.display = "";
+},
+
       isUserLoggedIn: function(){
         if (sessionStorage.getItem("UserIdToken") === null){
           this.userIsLoggedIn = false;
-          alert("id is null")
+          return false;
         }
         else{
           this.userIsLoggedIn = true;
-          alert("id exists")
+          return true;
         }
       },
     logUserOut: function(){
@@ -65,7 +80,7 @@ export default {
       this.userIsLoggedIn = false
     },
     beforeMount(){
-            this.isUserLoggedIn;
+        this.userIsLoggedIn = this.isUserLoggedIn();        
     },
   }
 }
