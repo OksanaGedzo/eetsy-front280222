@@ -72,16 +72,16 @@
         </tr>
       </table>
     </div>
-
     <br>
-    <!--      <div class="selDiv">-->
-    <!--        <select class="opts">-->
-    <!--          <option selected value="DEFAULT">Vali delivery method</option>-->
-    <!--          <option value="SEL1">Itella</option>-->
-    <!--          <option value="SEL2">Omniva</option>-->
-    <!--          <option value="SEL2">StarShip</option>-->
-    <!--          <option value="SEL2">Kuller</option>-->
-    <!--        </select>-->
+    <br>
+    <select v-model="selected">
+      <option disabled value="">Vali delivery method</option>
+      <option v-for="row in deliveryMethods" :value="row.name ">{{row.name}}, {{row.price}}, {{row.deliveryTime}} </option>
+    </select>
+    <br>
+    <span>Delivery method: {{selected}} </span>
+    <br>
+    <br>
     <br>
     <br>
     <select class="opts">
@@ -141,6 +141,8 @@ export default {
       paymentMethods: [],
       deliveryMethods: [],
 
+      selected :""
+
     }
   },
   methods: {
@@ -156,17 +158,18 @@ export default {
         this.orderItemDtos = response.data.orderItemDtos;
         this.orderId = response.data.orderId;
         this.orderNumber = response.data.orderNumber;
-
-
         console.log(response.data)
       }).catch(error => {
         console.log(error)
       })
     },
 
+
     redirectToConfirmPage: function (orderId) {
       this.$router.push({name: 'Confirm', query: {id: orderId}})
-    }
+    },
+
+
 
     // }, $(function() {
     //   $('#deliveriorpaymentframe').change(function () {
