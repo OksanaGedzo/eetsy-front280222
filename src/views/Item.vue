@@ -2,13 +2,13 @@
   <div>
 
     ITEM TITLE: {{ itemObject.name }} <br>
-    ITEM SELLER: {{ itemSellerObject.name}} <br>
+    ITEM SELLER: {{ itemObject.sellerName}} <br>
     ITEM DESCRIPTION: {{ itemObject.description }} <br>
     ITEM PRICE: {{ itemObject.price }} <br>
     PILT: siia tuleb pilt
     <input type="number" value="1" v-model="itemQuantity">
     <button v-on:click=""> ADD TO CART</button>
-    //TODO ÜHENDA MERIKESE ENDPOINDIGA
+
 
   </div>
 
@@ -21,7 +21,6 @@ export default {
     return {
       itemId: this.$route.query.id,
       itemObject: {},
-      itemSellerObject: {},
       itemQuantity: ''
     }
   },
@@ -34,7 +33,6 @@ export default {
           }
       ).then(response => {
         this.itemObject = response.data,
-        this.itemSellerObject = response.data.seller,
         console.log(response.data)
       }).catch(error => {
         console.log(error)
