@@ -40,9 +40,7 @@ export default {
 
         //UserIdTokenit kutsume välja App.vue meetodis
         localStorage.setItem('UserIdToken', this.userId);
-        localStorage.setItem('TestObjectToken', this.testObject);
-        this.testObjectFromToken = localStorage.getItem('TestObjectToken')
-        //Pole 100% kindel kas objektiga töötab või mitte.
+        this.checkForOpenUserOrder(this.userId);
         alert("Login success.")
         this.redirectToMainPage()
         console.log(response.data)
@@ -55,18 +53,20 @@ export default {
       this.$router.push({name: 'About'})
     },
     checkForOpenUserOrder: function () { //todo
-      this.$http.get("/some/path", {
+      this.$http.get("/check/for/open/order/by/user/id", {
             params: {
               userId: this.userId
             }
           }
       ).then(response => {
-        this.orderId = response.data
         console.log(response.data)
       }).catch(error => {
         console.log(error)
       })
     }
+
+  },
+  beforeMount() {
 
   }
 
