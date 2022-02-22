@@ -8,9 +8,6 @@
       <router-link id="loginLink"  to="/login">Login |</router-link>
       <router-link id ="signupLink"  to="/signup">Sign Up |</router-link>
       <a href="/" id="logoutLink" style="display: none" v-on:click="logUserOut">Log Out</a>
-
-      <button v-on:click="isUserLoggedIn">Check if user is logged in</button>
-      <textarea :placeholder="someText"></textarea>
     </div>
     <router-view />
   </div>

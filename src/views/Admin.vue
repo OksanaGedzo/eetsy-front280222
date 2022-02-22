@@ -1,6 +1,8 @@
 <template>
 <div>
   <div>
+    <h1>Admin vaade</h1>
+
     
     <!-- 
       type="file"                       - teeb faili valimise meile lihtsaks
