@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     getAllItemsBySubGroup: function (subGroupName) {
-      this.$http.get("get/subgroup/item/response", {
+      this.$http.get("get/items/by/subgroup/name", {
             params: {
               name: subGroupName
             }

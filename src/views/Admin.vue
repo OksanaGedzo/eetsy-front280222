@@ -37,7 +37,10 @@ export default {
       piltBackendist: null,
       piltObject: {
       "data":null
-      }
+      },
+      selectedPrimaryGroup: null,
+      selectedSubgGroup: null,
+      selectedItems: null,
     }
   },
   methods: {
@@ -80,6 +83,44 @@ export default {
         console.log(error)
       })
     },
+
+    getAllPrimaryGroups: function () {
+      this.$http.get("/get/all/primarygroups/", {
+          }
+      ).then(response => {
+        console.log(response.data)
+        return response.data
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+
+    getAllSubGroupsByPrimaryGroupId: function () {
+      this.$http.get("primarygroup", {
+            params: {
+              someParam: this.selectedPrimaryGroup
+            }
+          }
+      ).then(response => {
+        return response.data
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    getAllItemsBySubGroup: function () {
+      this.$http.get("/some/path", {
+            params: {
+              someParam: this.selectedSubgGroup
+            }
+          }
+      ).then(response => {
+        return response.data
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+    }
 
   }
 }

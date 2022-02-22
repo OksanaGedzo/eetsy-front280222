@@ -5,14 +5,13 @@
       <router-link to="/about">About |</router-link>
       <router-link to="/order">Order |</router-link>
       <router-link to="/admin">Admin |</router-link>
-      <router-link id="loginLink"  to="/login">Login |</router-link>
-      <router-link id ="signupLink"  to="/signup">Sign Up |</router-link>
+      <router-link id="loginLink" to="/login">Login |</router-link>
+      <router-link id="signupLink" to="/signup">Sign Up |</router-link>
       <a href="/" id="logoutLink" style="display: none" v-on:click="logUserOut">Log Out</a>
 
       <button v-on:click="isUserLoggedIn">Check if user is logged in</button>
-      <textarea :placeholder="someText"></textarea>
     </div>
-    <router-view />
+    <router-view/>
   </div>
 </template>
 
@@ -41,46 +40,46 @@
 
 <script>
 import {eventBus} from "@/main.js";
+
 export default {
   name: "App",
-  data: function() {
+  data: function () {
     return {
-    userIsLoggedIn: false,
-    someText: null
-        }
-    },
-    created () {
-          eventBus.$on('fireMethod', (event) => {
-            this.someText = event;
-            console.log('bus fired')
-            
-            this.isUserLoggedIn();
-            this.hideTheDamnThingsAlready()
-    })
-    },
-    methods: {
-hideTheDamnThingsAlready: function() {
-  document.getElementById('loginLink').style.display = "none";
-  document.getElementById('signupLink').style.display = "none";
-  document.getElementById('logoutLink').style.display = "";
-},
+      userIsLoggedIn: false,
+      someText: null
+    }
+  },
+  created() {
+    eventBus.$on('fireMethod', (event) => {
+      this.someText = event;
+      console.log('bus fired')
 
-      isUserLoggedIn: function(){
-        if (sessionStorage.getItem("UserIdToken") === null){
-          this.userIsLoggedIn = false;
-          return false;
-        }
-        else{
-          this.userIsLoggedIn = true;
-          return true;
-        }
-      },
-    logUserOut: function(){
+      this.isUserLoggedIn();
+      this.hideLoginElements()
+    })
+  },
+  methods: {
+    hideLoginElements: function () {
+      document.getElementById('loginLink').style.display = "none";
+      document.getElementById('signupLink').style.display = "none";
+      document.getElementById('logoutLink').style.display = "";
+    },
+
+    isUserLoggedIn: function () {
+      if (sessionStorage.getItem("UserIdToken") === null) {
+        this.userIsLoggedIn = false;
+        return false;
+      } else {
+        this.userIsLoggedIn = true;
+        return true;
+      }
+    },
+    logUserOut: function () {
       sessionStorage.removeItem('UserIdToken');
       this.userIsLoggedIn = false
     },
-    beforeMount(){
-        this.userIsLoggedIn = this.isUserLoggedIn();        
+    beforeMount() {
+      this.userIsLoggedIn = this.isUserLoggedIn();
     },
   }
 }
