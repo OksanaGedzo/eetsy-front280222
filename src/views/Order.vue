@@ -3,14 +3,6 @@
     <img alt="Vue logo" src="../assets/logo.png">
     <h1>Shopping cart order</h1>
     Order Number: {{ orderNumber }}
-<!--        <ol>-->
-<!--          <li v-for=" row in orderItemDtos">-->
-<!--            {{ row.itemName }} - -->
-<!--            {{ row.itemPrice }} eur- -->
-<!--            {{ row.quantity }} tk - -->
-<!--            {{ row.sum }} eur-->
-<!--          </li>-->
-<!--        </ol>-->
     <div v-if="orderItemDtos.length > 0">
       <table>
         <tr>
@@ -29,84 +21,48 @@
         </tr>
       </table>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div v-if="deliveryMethods.length > 0">
-      <table>
-        <tr>
-          <th>DELIVERY ID</th>
-          <th>DELIVERY PRICE</th>
-          <th>DELIVERY NAME</th>
-          <th>DELIVERY TIME</th>
-          <th>NUPP</th>
-        </tr>
-        <tr v-for="row in deliveryMethods">
-          <td>{{ row.id }}</td>
-          <td>{{ row.price }}</td>
-          <td>{{ row.name }}</td>
-          <td>{{ row.deliveryTime }}</td>
-          <td>
-            <button v-on:click="">Vali mind</button>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <br>
-    <br>
-    <br>
-    <div v-if="paymentMethods.length > 0">
-      <table>
-        <tr>
-          <th>PAYMENT ID</th>
-          <th>PAYMENT TYPE</th>
-          <th>NUPP</th>
-        </tr>
-        <tr v-for="row in paymentMethods">
-          <td>{{ row.id }}</td>
-          <td>{{ row.paymentType }}</td>
-          <td>
-            <button v-on:click="">Vali mind</button>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <br>
+<!--    <button v-on:click=" calculateOrderItemsTotalSum">Arvuta itemide sum</button>-->
+
+
+
+<!--&lt;!&ndash;    <div>&ndash;&gt;-->
+<!--&lt;!&ndash;      <ul v-model="select">&ndash;&gt;-->
+<!--&lt;!&ndash;      <option v-for="row in orderItemDtos" :value="row"> {{ row.sum }}</option>&ndash;&gt;-->
+<!--&lt;!&ndash;      </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;      <span>ITEMIDE SUM: {{ select.sum }} </span>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    <br>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    &ndash;&gt;-->
     <br>
     <select v-model="selected">
       <option disabled value="">Vali delivery method</option>
-      <option v-for="row in deliveryMethods" :value="row.name ">{{row.name}}, {{row.price}} eur, {{row.deliveryTime}} </option>
+      <option v-for="row in deliveryMethods" :value="row ">{{ row.name }}, {{ row.price }} eur,
+        {{ row.deliveryTime }}</option>
     </select>
     <br>
-    <span>Delivery method: {{selected}} </span>
+    <span>Delivery method: {{ selected.name }} {{ selected.deliveryTime }} </span>
     <br>
+
+
+
+
     <br>
     <select v-model="selectedP">
       <option disabled value="">Vali payment method</option>
-      <option v-for="row in paymentMethods" :value="row.paymentType ">{{row.paymentType}} </option>
+      <option v-for="row in paymentMethods" :value="row.paymentType ">{{ row.paymentType }}</option>
     </select>
     <br>
-    <span>Payment method: {{selectedP}} </span>
+    <span>Payment method: {{ selectedP }} </span>
     <br>
-    <br>
-    <br>
-    <br>
-    <select class="opts">
-      <option selected value="DEFAULT">Vali payment method</option>
-      <option v-for="row in paymentMethods" :value="row.id">{{ row.paymentType }}</option>
-    </select>
-    <br>
-    <br>
-    <select class="opts">
-      <option selected value="DEFAULT">Vali delivery method</option>
-      <option v-for="row in deliveryMethods" :value="row.id">{{ row.name }}</option>
-    </select>
 
-    <!--        TOTAL PRICE: {{ 'ghh  method  jj' }}-->
-    <!--        <button v-on:click="redirectToConfirmPage(orderId.id)">Confirm the order</button>-->
-    <!--      </div>
-        </div>-->
+
+
+
+    <br>
+    <span>TOTAL PRICE: {{ totalPrice }} </span>
+    <br>
+    <button v-on:click=" calculateTotalPrice">KINNITA JA GO...</button>
   </div>
 </template>
 
@@ -149,12 +105,32 @@ export default {
       paymentMethods: [],
       deliveryMethods: [],
 
-      selected :"",
-      selectedP :""
+      totalPrice: 0,
+      price: 0,
+      totalSum: 0,
+      select: "",
+      sum: 0,
+
+      selected: "",
+      selectedP: ""
 
     }
   },
   methods: {
+
+    calculateOrderItemsTotalSum: function () {
+      this.totalSum = 0;
+      this.orderItemDtos.forEach(row => this.totalSum += row.sum)
+      this.totalSum += this.select.sum;
+    },
+
+    calculateTotalPrice: function () {
+      this.totalPrice = 0;
+      this.orderItemDtos.forEach(row => this.totalPrice += row.sum)
+      this.totalPrice += this.selected.price;
+    },
+
+
     getShoppingCart: function () {
       this.$http.get("/get/shopping/cart", {
             params: {
@@ -173,24 +149,19 @@ export default {
       })
     },
 
+    // postTotalPrice: function () {
+    //   this.$http.post("/post/total/price", this.totalPrice
+    //   ).then(response => {
+    //     console.log(response.data)
+    //   }).catch(error => {
+    //     console.log(error)
+    //   })
+    // },
+
 
     redirectToConfirmPage: function (orderId) {
       this.$router.push({name: 'Confirm', query: {id: orderId}})
     },
-
-
-
-    // }, $(function() {
-    //   $('#deliveriorpaymentframe').change(function () {
-    //     var valik = $(this).find(':selected').val();
-    //     if (valik == 'str1') {
-    //       $('.element').text('row 1');
-    //     } else if (valik == 'str2') {
-    //       $('.element').text('row 2');
-    //     } else if (valik == 'str3') {
-    //       $('.element').text('row 3');
-    //     }
-    //   });
 
   },
 
