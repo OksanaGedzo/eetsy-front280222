@@ -11,42 +11,39 @@
           <th>ITEM PRICE</th>
           <th>ITEM QUANTITY</th>
           <th>ITEM SUM</th>
+          <th>/th>
         </tr>
         <tr v-for="row in orderItemDtos">
           <td>{{ row.itemId }}</td>
           <td>{{ row.itemName }}</td>
           <td>{{ row.itemPrice }}</td>
-          <td>{{ row.quantity }}</td>
-          <td>{{ row.sum }}</td>
+          <td><input style="text-align: center" :value="row.quantity"
+                     @input="event => {row.quantity = event.target.value; calculateItemSum()}"></td>
+<!--          @input="event => {row.quantity = event.target.value; (document.getElementById('itemButton').style.display = "")}"></td>&ndash;&gt;-->
+          <td>{{ row.sum = row.quantity * row.itemPrice }}</td>
+          <td id="itemButton" v-on:click="calculateItemSum" style="display: none"><button> confirm</button></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Sum {{ itemsSum }} eur</td>
         </tr>
       </table>
     </div>
-<!--    <button v-on:click=" calculateOrderItemsTotalSum">Arvuta itemide sum</button>-->
 
 
-
-<!--&lt;!&ndash;    <div>&ndash;&gt;-->
-<!--&lt;!&ndash;      <ul v-model="select">&ndash;&gt;-->
-<!--&lt;!&ndash;      <option v-for="row in orderItemDtos" :value="row"> {{ row.sum }}</option>&ndash;&gt;-->
-<!--&lt;!&ndash;      </ul>&ndash;&gt;-->
-<!--&lt;!&ndash;      <span>ITEMIDE SUM: {{ select.sum }} </span>&ndash;&gt;-->
-<!--&lt;!&ndash;    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;    <br>&ndash;&gt;-->
-
-<!--&lt;!&ndash;    &ndash;&gt;-->
     <br>
     <select v-model="selected">
       <option disabled value="">Vali delivery method</option>
       <option v-for="row in deliveryMethods" :value="row ">{{ row.name }}, {{ row.price }} eur,
-        {{ row.deliveryTime }}</option>
+        {{ row.deliveryTime }}
+      </option>
     </select>
     <br>
     <span>Delivery method: {{ selected.name }} {{ selected.deliveryTime }} </span>
     <br>
-
-
-
-
     <br>
     <select v-model="selectedP">
       <option disabled value="">Vali payment method</option>
@@ -55,14 +52,14 @@
     <br>
     <span>Payment method: {{ selectedP }} </span>
     <br>
-
-
-
-
     <br>
     <span>TOTAL PRICE: {{ totalPrice }} </span>
     <br>
-    <button v-on:click=" calculateTotalPrice">KINNITA JA GO...</button>
+    <button v-on:click=" calculateTotalPrice">ARVUTA...</button>
+    <br>
+    <br>
+    <br>{{orderFinal}}
+    <br>
   </div>
 </template>
 
@@ -100,6 +97,7 @@ export default {
       order: {},
 
       orderItemSum: '',
+      orderFinal: '',
 
       orderItemDtos: [],
       paymentMethods: [],
@@ -107,9 +105,9 @@ export default {
 
       totalPrice: 0,
       price: 0,
-      totalSum: 0,
+      itemsSum: 0,
       select: "",
-      sum: 0,
+      // sum: 0,
 
       selected: "",
       selectedP: ""
@@ -117,12 +115,6 @@ export default {
     }
   },
   methods: {
-
-    calculateOrderItemsTotalSum: function () {
-      this.totalSum = 0;
-      this.orderItemDtos.forEach(row => this.totalSum += row.sum)
-      this.totalSum += this.select.sum;
-    },
 
     calculateTotalPrice: function () {
       this.totalPrice = 0;
@@ -143,30 +135,52 @@ export default {
         this.orderItemDtos = response.data.orderItemDtos;
         this.orderId = response.data.orderId;
         this.orderNumber = response.data.orderNumber;
+        this.calculateItemSum()
         console.log(response.data)
       }).catch(error => {
         console.log(error)
       })
     },
 
-    // postTotalPrice: function () {
-    //   this.$http.post("/post/total/price", this.totalPrice
-    //   ).then(response => {
-    //     console.log(response.data)
-    //   }).catch(error => {
-    //     console.log(error)
-    //   })
-    // },
+    calculateItemSum: function () {
+      this.itemsSum = 0;
+      this.orderItemDtos.forEach(row => this.itemsSum += row.sum)
+      console.log(this.itemsSum)
+    },
 
+    Post: function () {
+      let orderFinal = {
+        orderId: this.orderId,
+        userId: this.userId,
+        paymentMethods: this.paymentMethods,
+        orderNumber: this.orderNumber,
+        orderDate: this.data.timestamp,
+        orderStatus: this.orderStatus,
+        totalPrice: this.totalPrice,
+        orderItemsByOrderId: this.orderItemsByOrderId,
+        deliveryMethods: this.this.deliveryMethods,
+
+      }
+      this.$http.post("/put/order/to/orders/in/progress", orderFinal
+      ).then(response => {
+        this.order(this.orderId)
+        alert("Order educalt kinnitatud!")
+        console.log(response.data)
+      }).catch(error => {
+        alert(error.response.data.message)
+        console.log(error)
+      })
+    },
 
     redirectToConfirmPage: function (orderId) {
       this.$router.push({name: 'Confirm', query: {id: orderId}})
     },
 
   },
-
-
   beforeMount() {
+
+  },
+  created() {
     this.getShoppingCart()
   }
 }
