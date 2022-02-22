@@ -24,17 +24,18 @@
           <td>{{ row.itemId }}</td>
           <td>{{ row.itemName }}</td>
           <td>{{ row.itemPrice }}</td>
-          <td>{{ row.quantity }}</td>
-          <td>{{ row.sum }}</td>
+          <td><input style="text-align: center" :value="row.quantity" @input="event => row.quantity = event.target.value"></td>
+          <td>{{ row.sum = row.quantity*row.itemPrice }}</td>
         </tr>
       </table>
+
     </div>
     <br>
     <br>
     <br>
     <br>
-    <div v-if="deliveryMethods.length > 0">
-      <table>
+
+      <table style="display: inline-table">
         <tr>
           <th>DELIVERY ID</th>
           <th>DELIVERY PRICE</th>
@@ -52,12 +53,8 @@
           </td>
         </tr>
       </table>
-    </div>
-    <br>
-    <br>
-    <br>
-    <div v-if="paymentMethods.length > 0">
-      <table>
+
+      <table style="display: inline-table" >
         <tr>
           <th>PAYMENT ID</th>
           <th>PAYMENT TYPE</th>
@@ -71,7 +68,7 @@
           </td>
         </tr>
       </table>
-    </div>
+
     <br>
     <br>
     <select v-model="selected">
@@ -84,7 +81,7 @@
     <br>
     <select v-model="selectedP">
       <option disabled value="">Vali payment method</option>
-      <option v-for="row in paymentMethods" :value="row.paymentType ">{{row.paymentType}} </option>
+      <option v-for="row in paymentMethods" :value="row.paymentType">{{row.paymentType}} </option>
     </select>
     <br>
     <span>Payment method: {{selectedP}} </span>
@@ -112,6 +109,18 @@
 
 
 <style>
+sideBySideTable {
+  box-sizing: border-box;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+  padding: 5px;
+}
 table {
   margin-left: auto;
   margin-right: auto;

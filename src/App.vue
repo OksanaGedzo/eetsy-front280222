@@ -62,7 +62,7 @@ export default {
     hideLoginElements: function () {
       document.getElementById('loginLink').style.display = "none";
       document.getElementById('signupLink').style.display = "none";
-      document.getElementById('logoutLink').style.display = "";
+      document.getEl ementById('logoutLink').style.display = "";
     },
 
     isUserLoggedIn: function () {
