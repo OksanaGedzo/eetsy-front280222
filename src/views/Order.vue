@@ -75,7 +75,7 @@
     <br>
     <br>
     <select v-model="selected">
-      <option disabled value="">Vali delivery method</option>
+      <option disabled value="">Select delivery method</option>
       <option v-for="row in deliveryMethods" :value="row.name ">{{row.name}}, {{row.price}} eur, {{row.deliveryTime}} </option>
     </select>
     <br>
@@ -83,7 +83,7 @@
     <br>
     <br>
     <select v-model="selectedP">
-      <option disabled value="">Vali payment method</option>
+      <option disabled value="">Select payment method</option>
       <option v-for="row in paymentMethods" :value="row.paymentType ">{{row.paymentType}} </option>
     </select>
     <br>

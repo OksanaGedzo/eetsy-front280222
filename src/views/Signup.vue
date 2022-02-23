@@ -1,23 +1,52 @@
 <template>
+  <div>
+    <h1>create account</h1>
     <div>
-      <h1>create account</h1>
-      <div>
-        username <input type="text"></div>
-      <br>
-      <div>
-        password <input type="text">
-      </div>
-      <br>
-      <div>
-        confirm password <input type="text">
-      </div>
-      <br>
-      <br>
-      <br>
-      <div>
-        <button v-on:click="checkThatPasswordIsSame">proceed to contact details </button>
-      </div>
+      username <input type="text" v-model="userName">
     </div>
+    <br>
+    <div>
+      password <input type="text" v-model="password1">
+    </div>
+    <br>
+    <div>
+      confirm password <input type="text" v-model="password2">
+    </div>
+    <br>
+    <div>
+      first name <input placeholder="firstName" v-model="contactObject.firstName">
+    </div>
+    <br>
+    <div>
+      last name <input placeholder="lastName" v-model="contactObject.lastName">
+    </div>
+    <br>
+    <div>
+      address <input placeholder="address" v-model="contactObject.address">
+    </div>
+    <br>
+    <div>
+      zip code <input placeholder="postIndex" v-model="contactObject.postIndex">
+    </div>
+    <br>
+    <div>
+      country <input placeholder="country" v-model="contactObject.country">
+    </div>
+    <br>
+    <div>
+      phone number <input placeholder="phoneNumber" v-model="contactObject.phoneNumber">
+    </div>
+    <br>
+    <div>
+      e-mail <input placeholder="email" v-model="contactObject.email">
+    </div>
+    <br>
+    <div>
+      <button v-on:click="checkThatPasswordIsSame">create user account</button>
+    </div>
+    {{this.userObject}}
+  </div>
+
 </template>
 
 <script>
@@ -26,14 +55,26 @@ export default {
   data: function () {
     return {
       userName: '',
-      userPassword: '',
-      password1:'',
-      password2:'',
-      userExists:null,
-
+      password1: '',
+      password2: '',
+      userExists: null,
+      contactObject: {
+        "firstName": null,
+        "lastName": null,
+        "address": null,
+        "postIndex": null,
+        "country": null,
+        "phoneNumber": null,
+        "email": null
+      },
+      userObject: {
+        "contact": null,
+        "userName": null,
+        "password": null
+      },
     }
   },
-  methods:{
+  methods: {
     checkIfUserExists: function () {
       this.$http.get("/check/if/user/exist", {
             params: {
@@ -60,11 +101,12 @@ export default {
       }
     },
     createNewUser: function () {
-      var user= {contact:this.contact,
-        username:this.username,
-        password:this.password
+      let user = {
+        contact: this.contactObject,
+        userName: this.userName,
+        password: this.password1
       }
-      this.$http.post("/some/path", this.someDtoObject
+      this.$http.post("/add/new/user", user
       ).then(response => {
         console.log(response.data)
       }).catch(error => {
