@@ -5,11 +5,12 @@
       <router-link to="/about">About |</router-link>
       <router-link to="/order">Order |</router-link>
       <router-link to="/admin">Admin |</router-link>
-      <router-link id="loginLink"  to="/login">Login |</router-link>
-      <router-link id ="signupLink"  to="/signup">Sign Up |</router-link>
+      <router-link to="/account">Account |</router-link>
+      <router-link id="loginLink" to="/login">Login |</router-link>
+      <router-link id="signupLink" to="/signup">Sign Up |</router-link>
       <a href="/" id="logoutLink" style="display: none" v-on:click="logUserOut">Log Out</a>
     </div>
-    <router-view />
+    <router-view/>
   </div>
 </template>
 
@@ -38,46 +39,39 @@
 
 <script>
 import {eventBus} from "@/main.js";
+
 export default {
   name: "App",
-  data: function() {
-    return {
-    userIsLoggedIn: false,
-    someText: null
-        }
-    },
-    created () {
-          eventBus.$on('fireMethod', (event) => {
-            this.someText = event;
-            console.log('bus fired')
-            
-            this.isUserLoggedIn();
-            this.hideTheDamnThingsAlready()
-    })
-    },
-    methods: {
-hideTheDamnThingsAlready: function() {
-  document.getElementById('loginLink').style.display = "none";
-  document.getElementById('signupLink').style.display = "none";
-  document.getElementById('logoutLink').style.display = "";
-},
+  components: {},
 
-      isUserLoggedIn: function(){
-        if (sessionStorage.getItem("UserIdToken") === null){
-          this.userIsLoggedIn = false;
-          return false;
-        }
-        else{
-          this.userIsLoggedIn = true;
-          return true;
-        }
-      },
-    logUserOut: function(){
-      sessionStorage.removeItem('UserIdToken');
-      this.userIsLoggedIn = false
+  data: function () {
+    return {
+      userIsLoggedIn: false,
+      someText: null
+    }
+  },
+  created() {
+    eventBus.$on('fireMethod', (event) => {
+      this.someText = event;
+      console.log('bus fired')
+
+      this.hideTheDamnThingsAlready()
+    })
+  },
+  methods: {
+    hideTheDamnThingsAlready: function () {
+      document.getElementById('loginLink').style.display = "none";
+      document.getElementById('signupLink').style.display = "none";
+      document.getElementById('logoutLink').style.display = "";
     },
-    beforeMount(){
-        this.userIsLoggedIn = this.isUserLoggedIn();        
+
+
+    logUserOut: function () {
+      sessionStorage.removeItem('UserIdToken');
+
+    },
+    beforeMount() {
+
     },
   }
 }

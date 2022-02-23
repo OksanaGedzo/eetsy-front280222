@@ -44,7 +44,7 @@
     <div>
       <button v-on:click="checkThatPasswordIsSame">create user account</button>
     </div>
-    {{this.userObject}}
+
   </div>
 
 </template>

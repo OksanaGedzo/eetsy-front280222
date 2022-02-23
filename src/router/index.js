@@ -8,10 +8,16 @@ import Signup from "@/views/Signup";
 import Login from "@/views/Login";
 import Order from "@/views/Order";
 import Admin from "@/views/Admin";
+import Account from "@/views/Account";
 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/account',
+    name: 'Account',
+    component: Account
+  },
   {
     path: '/admin',
     name: 'Admin',
