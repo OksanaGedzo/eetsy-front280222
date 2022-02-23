@@ -9,7 +9,6 @@
       <router-link id="signupLink" to="/signup">Sign Up |</router-link>
       <a href="/" id="logoutLink" style="display: none" v-on:click="logUserOut">Log Out</a>
 
-      <button v-on:click="isUserLoggedIn">Check if user is logged in</button>
     </div>
     <router-view/>
   </div>
@@ -54,7 +53,6 @@ export default {
       this.someText = event;
       console.log('bus fired')
 
-      this.isUserLoggedIn();
       this.hideLoginElements()
     })
   },
@@ -62,7 +60,7 @@ export default {
     hideLoginElements: function () {
       document.getElementById('loginLink').style.display = "none";
       document.getElementById('signupLink').style.display = "none";
-      document.getEl ementById('logoutLink').style.display = "";
+      document.getElementById('logoutLink').style.display = "";
     },
 
     isUserLoggedIn: function () {
@@ -79,7 +77,6 @@ export default {
       this.userIsLoggedIn = false
     },
     beforeMount() {
-      this.userIsLoggedIn = this.isUserLoggedIn();
     },
   }
 }
