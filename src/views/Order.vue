@@ -46,10 +46,10 @@
     <br>
     <select v-model="selectedPaymentMethod">
       <option disabled value="">Vali payment method</option>
-      <option v-for="row in paymentMethods" :value="row.paymentType ">{{ row.paymentType }}</option>
+      <option v-for="row in paymentMethods" :value="row">{{ row.paymentType }}</option>
     </select>
     <br>
-    <span>Payment method: {{ selectedPaymentMethod }} </span>
+    <span>Payment method: {{ selectedPaymentMethod.paymentType }} </span>
     <br>
     <br>
     <span>TOTAL PRICE: {{ totalPrice }} </span>
@@ -156,14 +156,14 @@ export default {
         // order: {
         id: this.orderId,
         userId: this.userId,
-        // paymentMethodDto: this.selectedPaymentMethod,
-        // orderNumber: this.orderNumber,
-        // orderDate: this.orderDate,
-        // orderStatus: this.orderStatus,
-        // totalPrice: this.totalPrice,
-        // // },
-        // orderItemDto: this.orderItemDtos,
-        // deliveryMethodDto: this.selectedDeliveryMethod,
+        paymentMethodDto: this.selectedPaymentMethod,
+        orderNumber: this.orderNumber,
+        orderDate: this.orderDate,
+        orderStatus: this.orderStatus,
+        totalPrice: this.totalPrice,
+        // },
+        orderItemDto: this.orderItemDtos,
+        deliveryMethodDto: this.selectedDeliveryMethod,
       }
       this.$http.post("/post/order/to/orders/in/progress", orderConfirmationRequestDto
       ).then(response => {
