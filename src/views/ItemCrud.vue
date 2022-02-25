@@ -99,13 +99,13 @@ export default {
   methods: {
     submitForm: function () {
       switch (this.radioButton) {
-        case 1:
+        case "1":
           this.addItem();
           break;
-        case 2:
+        case "2":
           this.updateItem();
           break;
-        case 3:
+        case "3":
           this.deleteItem();
           break;
       }
@@ -178,7 +178,8 @@ export default {
       let itemRequest = {
         itemId: this.itemId,
         name: this.itemNameField,
-        itemSellerId:  this.selectedSeller.id,
+        sellerId:  this.selectedSeller,
+        subGroupName: this.selectedSubGroup.name,
         price: this.itemPriceField,
         description: this.itemDescriptionField,
       }
@@ -212,7 +213,7 @@ export default {
             }
           }
       ).then(response => {
-        console.log(response.data)
+        alert((response.data.message === null) ? response.data.error : response.data.message)
       }).catch(error => {
         console.log(error)
       })
@@ -227,6 +228,7 @@ export default {
 </script>
 
 <style>
+
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
