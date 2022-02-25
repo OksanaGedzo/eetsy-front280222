@@ -86,6 +86,7 @@ export default {
         if (this.userExists === false) {
           this.createNewUser()
           alert("New user is created")
+          this.redirectToLoginPage()
         }
 
         console.log(response.data);
@@ -112,7 +113,10 @@ export default {
       }).catch(error => {
         console.log(error)
       })
-    }
+    },
+    redirectToLoginPage: function () {
+      this.$router.push({name: 'Login'})
+    },
   }
 
 
