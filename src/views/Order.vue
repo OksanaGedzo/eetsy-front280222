@@ -12,16 +12,22 @@
           <th>ITEM QUANTITY</th>
           <th>ITEM SUM</th>
           <th></th>
+          <th></th>
         </tr>
-        <tr v-for="row in orderItemDtos">
+        <tr v-for="(row, index) in orderItemDtos" @key="index">
           <td>{{ row.itemId }}</td>
           <td>{{ row.itemName }}</td>
           <td>{{ row.itemPrice }}</td>
           <td><input style="text-align: center" :value="row.quantity"
                      @input="event => {row.quantity = event.target.value}"></td>
+
           <td>{{ row.sum = row.quantity * row.itemPrice }}</td>
+
           <td id="itemButton" v-on:click="calculateItemSum">
             <button> Uuenda valikut</button>
+          </td>
+          <td id="deleteButton" v-on:click="deleteOrderItem(index)">
+            <button> Kustutada item</button>
           </td>
         </tr>
         <tr>
@@ -56,8 +62,6 @@
     <br>
     <button v-on:click=" calculateTotalPrice">ARVUTA TOTAL PRICE</button>
     <br>
-    <br>
-    <!--    <br>Final order: {{ orderInProgress }}-->
     <br>
     <br>
     <button v-on:click="postOrderAndRedirectHome">KINNITA ORDERIT JA MINE HOME PAGILE</button>
@@ -151,6 +155,12 @@ export default {
       this.orderItemDtos.forEach(row => this.itemsSum += row.sum)
     },
 
+    deleteOrderItem: function (index) {
+     this.orderItemDtos.splice(index,1)
+
+    },
+
+
     postOrderAndRedirectHome: function () {
       let orderConfirmationRequestDto = {
         // order: {
@@ -194,3 +204,5 @@ export default {
 <!--<style scoped>-->
 
 <!--</style>-->
+
+<!--<input type="checkbox"id="itemButton" v-on:click="calculateItemSum">-->
