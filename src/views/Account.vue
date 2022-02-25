@@ -5,10 +5,10 @@
     </div>
     <div>
       <table>
-        <tr>
-          <th></th>
-          <th></th>
-        </tr>
+<!--        <tr>-->
+<!--&lt;!&ndash;          <th></th>&ndash;&gt;-->
+<!--&lt;!&ndash;          <th></th>&ndash;&gt;-->
+<!--        </tr>-->
         <tr>
           <td>First Name</td>
           <td><input value="firstName" v-model="firstName"></td>

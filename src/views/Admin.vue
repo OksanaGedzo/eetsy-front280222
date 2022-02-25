@@ -1,7 +1,7 @@
 <template>
 <div>
   <div>
-    <h1>Admin vaade</h1>
+    <h1>Admin view</h1>
 
     
     <!-- 

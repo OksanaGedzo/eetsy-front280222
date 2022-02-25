@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>create account</h1>
+    <h1>Create account</h1>
     <div>
       username <input type="text" v-model="userName">
     </div>
