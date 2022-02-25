@@ -1,16 +1,16 @@
 <template>
-<div>
   <div>
-    
-    <!-- 
-      type="file"                       - teeb faili valimise meile lihtsaks
-      @change="handleImage"             - paneb käima 'handleImage' meetodi kui valitakse fail. 
-      accept="image/x-png,image/jpeg"   - mis tüüpi faile me üldse näitame File Upload aknakeses
-                                          hetkel lubame ainult .png ja .jpeg (ja nende alam vorme)
-                                          kasutades "image/*" lubaksime kõiki tuntud pildi tüüpe
-    -->
-    <input type="file" @change="handleImage" accept="image/x-png,image/jpeg">
-    <br>
+    <div>
+
+      <!--
+        type="file"                       - teeb faili valimise meile lihtsaks
+        @change="handleImage"             - paneb käima 'handleImage' meetodi kui valitakse fail.
+        accept="image/x-png,image/jpeg"   - mis tüüpi faile me üldse näitame File Upload aknakeses
+                                            hetkel lubame ainult .png ja .jpeg (ja nende alam vorme)
+                                            kasutades "image/*" lubaksime kõiki tuntud pildi tüüpe
+      -->
+      <input type="file" @change="handleImage" accept="image/x-png,image/jpeg">
+      <br>
 
       <!--
         Nii nagu ma aru saan koolon sünkroniseerib muutuja 'pilt' ja tema elemendi,
@@ -25,9 +25,15 @@
       <button v-on:click="requestLastImgFromBackend">Receive Last Image From Database</button>
     </div>
 
-    <ul>
+    <div>
+      <br>
       <router-link to="/itemCrud">Add, Edit, Remove Items</router-link>
-    </ul>
+      <br><br>
+      <router-link to="/subgroupCrud">Add, Edit, Remove Sub Groups</router-link>
+      <br><br>
+      <router-link to="/primaryGroupCrud">Add, Edit, Remove Primary Groups</router-link>
+      <br>
+    </div>
   </div>
 </template>
 
@@ -44,7 +50,7 @@ export default {
     }
   },
   methods: {
-    handleImage(event){
+    handleImage(event) {
       const selectedImage = event.target.files[0];
       this.createBase64Image(selectedImage);
     },
@@ -52,22 +58,22 @@ export default {
     redirectToItemCrud: function () {
       this.$router.push({name: 'ItemCrud'})
     },
-    
-    createBase64Image(fileObject){ 
+
+    createBase64Image(fileObject) {
       //reader tundub töötavat tagurpidi? Enne läheb käima kõige viimane rida reader.readAsDataURL(fileObject) ... vist
-      const reader = new FileReader(); 
-      reader.onload = () => { 
+      const reader = new FileReader();
+      reader.onload = () => {
         //pärast *edukat* laadimist antakse meie 'pilt' failile tema lõplik väärtus ning konsooli prinditakse testiks toores info
         this.piltObject.data = reader.result;
         console.log(this.piltObject)
       };
-      reader.onerror = function (error){
+      reader.onerror = function (error) {
         alert(error);
       }
-      reader.readAsDataURL(fileObject); 
+      reader.readAsDataURL(fileObject);
     },
 
-    sendImageDataToBackend: function () { 
+    sendImageDataToBackend: function () {
       this.$http.post("/upload/image", this.piltObject
       ).then(response => {
         console.log(this.piltObject)
@@ -75,11 +81,10 @@ export default {
       }).catch(error => {
         console.log(error)
       })
-    },    
-    
-    requestLastImgFromBackend: function () { 
-      this.$http.get("/receive/image", {
-          }
+    },
+
+    requestLastImgFromBackend: function () {
+      this.$http.get("/receive/image", {}
       ).then(response => {
         this.piltBackendist = response.data.data //lgtm
         console.log(response.data)

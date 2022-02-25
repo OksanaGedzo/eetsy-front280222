@@ -30,11 +30,6 @@
         </div>
       </div>
     </div>
-    <!--    <div>-->
-    <!--      <input value="itemNameField" v-model="itemNameField">-->
-    <!--      <input value="itemPriceField" v-model="itemPriceField">-->
-    <!--      <input value="itemDescriptionField"v-model="itemDescriptionField">-->
-    <!--    </div>-->
 
     <div v-if="selectedItem || selectedSubGroup">
       <table style="display: inline-table">
@@ -59,12 +54,17 @@
           </td>
         </tr>
         <tr>
-          <!--        <div class="gallery">-->
-          <!--          <div class="gallery-panel" v-for="image in itemPictures">-->
-          <!--            <img :src="image.data">-->
-          <!--            <button>Delete</button>-->
-          <!--          </div>-->
-          <!--        </div>-->
+          <div v-if="radioButton==2">
+            <input type="file" @change="handleImage" accept="image/x-png,image/jpeg">
+            <button v-on:click="sendImageDataToDatabase">Add Image</button>
+
+            <div class="gallery">
+              <div class="gallery-panel" v-for="image in itemPictures">
+                <img :src="image.data">
+                <button>Delete</button>
+              </div>
+            </div>
+          </div>
         </tr>
       </table>
     </div>
@@ -91,12 +91,39 @@ export default {
       itemPriceField: null,
       itemDescriptionField: null,
       radioButton: null,
+      piltObjectRequest: null,
       addSelected: false,
       editSelected: false,
       deleteSelected: false,
+      piltObject: {}
     }
   },
   methods: {
+    handleImage(event) {
+      const selectedImage = event.target.files[0];
+      this.createBase64Image(selectedImage);
+    },
+    createBase64Image(fileObject) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.piltObject.pictureData = reader.result;
+        console.log(this.piltObject)
+      };
+      reader.onerror = function (error) {
+        alert(error);
+      }
+      reader.readAsDataURL(fileObject);
+    },
+    sendImageDataToDatabase: function () {
+      this.piltObject.itemId = this.selectedItem.itemId;
+      this.$http.post("/upload/image", this.piltObject
+      ).then(response => {
+        console.log(this.piltObject)
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
     submitForm: function () {
       switch (this.radioButton) {
         case "1":
@@ -115,6 +142,7 @@ export default {
       this.itemNameField = this.selectedItem.itemName
       this.itemPriceField = this.selectedItem.itemPrice
       this.itemDescriptionField = this.selectedItem.itemDescription
+      this.getItemPictures(this.selectedItem.itemId)
     },
 
     populateSubgroup: function () {
@@ -124,16 +152,25 @@ export default {
       this.getAllItemsBySubGroupName(this.selectedSubGroup.name)
     },
 
-    handleImage(event) {
-      const selectedImage = event.target.files[0];
-      this.createBase64Image(selectedImage);
-    },
-
     getAllPrimaryGroups: function () {
       this.$http.get("/get/all/primarygroups/", {}
       ).then(response => {
         console.log(response.data)
         this.primaryGroups = response.data;
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+
+    getItemPictures: function () {
+      this.$http.get("/get/item/pictures", {
+            params: {
+              id: this.itemId
+            }
+          }
+      ).then(response => {
+        this.itemPictures = response.data
+        console.log(response.data)
       }).catch(error => {
         console.log(error)
       })
@@ -178,7 +215,7 @@ export default {
       let itemRequest = {
         itemId: this.itemId,
         name: this.itemNameField,
-        sellerId:  this.selectedSeller,
+        sellerId: this.selectedSeller,
         subGroupName: this.selectedSubGroup.name,
         price: this.itemPriceField,
         description: this.itemDescriptionField,
@@ -233,13 +270,13 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   grid-gap: 1rem;
-  max-width: 80rem;
+  max-width: 50%;
   margin: 5rem auto;
   padding: 0 5rem;
 }
 
 .gallery-panel img {
-  width: 100%;
+  width: 20%;
   height: 22vw;
   object-fit: cover;
   border-radius: 0.75rem;
