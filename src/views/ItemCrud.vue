@@ -97,21 +97,6 @@ export default {
     }
   },
   methods: {
-    addItem: function () {
-      let itemRequest = {
-        itemId: this.itemId,
-        name: this.itemNameField,
-        itemSellerId:  this.selectedSeller.id,
-        price: this.itemPriceField,
-        description: this.itemDescriptionField,
-      }
-      this.$http.post("/some/path", itemRequest
-      ).then(response => {
-        console.log(response.data)
-      }).catch(error => {
-        console.log(error)
-      })
-    },
     submitForm: function () {
       switch (this.radioButton) {
         case 1:
@@ -189,6 +174,23 @@ export default {
         console.log(error)
       })
     },
+    addItem: function () {
+      let itemRequest = {
+        itemId: this.itemId,
+        name: this.itemNameField,
+        itemSellerId:  this.selectedSeller.id,
+        price: this.itemPriceField,
+        description: this.itemDescriptionField,
+      }
+      this.$http.post("/add/item", itemRequest
+      ).then(response => {
+        alert((response.data.message === null) ? response.data.error : response.data.message)
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+
     updateItem: function () {
       let itemDto = {
         itemId: this.itemId,
@@ -199,6 +201,18 @@ export default {
       this.$http.put("/update/item", itemDto
       ).then(response => {
         alert((response.data.message === null) ? response.data.error : response.data.message)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    deleteItem: function () {
+      this.$http.delete("/delete/item", {
+            params: {
+              itemId: this.itemId
+            }
+          }
+      ).then(response => {
+        console.log(response.data)
       }).catch(error => {
         console.log(error)
       })
