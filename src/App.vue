@@ -6,8 +6,8 @@
       <router-link to="/order">Order |</router-link>
       <router-link to="/admin">Admin |</router-link>
       <router-link to="/account">Account |</router-link>
-      <router-link id="loginLink" to="/login">Login |</router-link>
-      <router-link id="signupLink" to="/signup">Sign Up |</router-link>
+      <router-link id="loginLink"  to="/login">Login |</router-link>
+      <router-link id ="signupLink"  to="/signup">Sign Up |</router-link>
       <a href="/" id="logoutLink" style="display: none" v-on:click="logUserOut">Log Out</a>
     </div>
     <router-view/>
@@ -42,36 +42,33 @@ import {eventBus} from "@/main.js";
 
 export default {
   name: "App",
-  components: {},
-
-  data: function () {
+  data: function() {
     return {
-      userIsLoggedIn: false,
-      someText: null
-    }
-  },
-  created() {
-    eventBus.$on('fireMethod', (event) => {
-      this.someText = event;
-      console.log('bus fired')
-
-      this.hideTheDamnThingsAlready()
-    })
-  },
-  methods: {
-    hideTheDamnThingsAlready: function () {
-      document.getElementById('loginLink').style.display = "none";
-      document.getElementById('signupLink').style.display = "none";
-      document.getElementById('logoutLink').style.display = "";
+    userIsLoggedIn: false,
+    someText: null
+        }
     },
+    created () {
+          eventBus.$on('fireMethod', (event) => {
+            this.someText = event;
+            console.log('bus fired')
+
+            this.hideLoginElements();
+    })
+    },
+    methods: {
+      hideLoginElements: function() {
+  document.getElementById('loginLink').style.display = "none";
+  document.getElementById('signupLink').style.display = "none";
+  document.getElementById('logoutLink').style.display = "";
+},
 
 
-    logUserOut: function () {
+    logUserOut: function(){
       sessionStorage.removeItem('UserIdToken');
 
     },
     beforeMount() {
-
     },
   }
 }

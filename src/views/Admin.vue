@@ -1,8 +1,6 @@
 <template>
 <div>
   <div>
-    <h1>Admin view</h1>
-
     
     <!-- 
       type="file"                       - teeb faili valimise meile lihtsaks
@@ -14,38 +12,45 @@
     <input type="file" @change="handleImage" accept="image/x-png,image/jpeg">
     <br>
 
-    <!-- 
-      Nii nagu ma aru saan koolon sünkroniseerib muutuja 'pilt' ja tema elemendi, 
-      kui muutub 'pilt' väärtus uueneb ka tema <img> element
-     -->
-    <img :src="piltObject.data"> <br>
-    <button v-on:click="sendImageDataToBackend" >Upload To Database</button> 
-    <br>
+      <!--
+        Nii nagu ma aru saan koolon sünkroniseerib muutuja 'pilt' ja tema elemendi,
+        kui muutub 'pilt' väärtus uueneb ka tema <img> element
+       -->
+      <img :src="piltObject.data"> <br>
+      <button v-on:click="sendImageDataToBackend">Upload To Database</button>
+      <br>
 
-    <img :src="piltBackendist">
-    <br>
-    <button v-on:click="requestLastImgFromBackend" >Receive Last Image From Database</button>
+      <img :src="piltBackendist">
+      <br>
+      <button v-on:click="requestLastImgFromBackend">Receive Last Image From Database</button>
+    </div>
+
+    <ul>
+      <router-link to="/itemCrud">Add, Edit, Remove Items</router-link>
+    </ul>
   </div>
-
-</div>
 </template>
 
 <script>
 export default {
   name: "Admin",
-  data(){
-    return{
+  data() {
+    return {
       pilt: null,
       piltBackendist: null,
       piltObject: {
-      "data":null
-      }
+        "data": null
+      },
     }
   },
   methods: {
     handleImage(event){
       const selectedImage = event.target.files[0];
       this.createBase64Image(selectedImage);
+    },
+
+    redirectToItemCrud: function () {
+      this.$router.push({name: 'ItemCrud'})
     },
     
     createBase64Image(fileObject){ 

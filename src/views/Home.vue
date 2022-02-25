@@ -9,7 +9,6 @@
            v-on:click="redirectToSubgroupPageWith(category.id)">
         <img src="..\assets\logo.png">
         {{ category.name }}
-
       </div>
     </div>
 
@@ -66,7 +65,6 @@ export default {
 
     redirectToSubgroupPageWith: function (primaryGroupId) {
       this.$router.push({name: 'Subgroups', query: {id: primaryGroupId}})
-
     },
   },
   beforeMount() {
