@@ -101,11 +101,11 @@ export default {
         "firstName": this.firstName,
             "lastName": this.lastName,
             "address": this.address,
-            "postIndex": this.postIndex,
+            "postIndex": this.postalIndex,
             "country": this.country,
             "phoneNumber": this.phoneNumber,
             "email": this.email,
-            "id":this.id
+            "id":this.user.contact.id
       }
       this.$http.put("/change/user/contact/info", contactObject
       ).then(response => {
