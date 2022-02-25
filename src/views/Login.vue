@@ -1,10 +1,13 @@
 <template>
   <div>
-    This is a login page.
+    Enter login details
+    <br>
+    <br>
 
     <div>
       User Name <input v-model="userName">
       User Password <input type="password" v-model="userPassword">
+      <br>
       <br>
       <button v-on:click="loginUser()">LOG IN</button>
       <br>
