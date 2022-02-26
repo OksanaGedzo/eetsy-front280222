@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="nav" style="background-color: orange">
+    <div id="nav">
       <router-link to="/">Home |</router-link>
       <router-link to="/order">Order |</router-link>
       <router-link to="/admin">Admin |</router-link>

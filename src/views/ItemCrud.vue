@@ -54,19 +54,20 @@
           </td>
         </tr>
         <tr>
-          <div v-if="radioButton==2">
+          <div v-if="radioButton > 0">
             <input type="file" @change="handleImage" accept="image/x-png,image/jpeg">
-            <button v-on:click="sendImageDataToDatabase">Add Image</button>
-
-            <div class="gallery">
-              <div class="gallery-panel" v-for="image in itemPictures">
-                <img :src="image.data">
-                <button>Delete</button>
-              </div>
-            </div>
+            <!--            <button v-on:click="sendImageDataToDatabase">Add Image</button>-->
+<!--            todo add ability to add several pictures when making a new item-->
           </div>
         </tr>
       </table>
+      <div class="itemGallery">
+        <div class="itemGallery-panel" v-for="image in itemPictures">
+<!--        <div class="itemGallery-panel" v-for="image in ((itemPictures === null)?newPictures:itemPictures)">-->
+          <img :src="image.data"><br>
+          <button v-on:click="deleteItemImage(image.id)">Delete</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -95,7 +96,9 @@ export default {
       addSelected: false,
       editSelected: false,
       deleteSelected: false,
-      piltObject: {}
+      piltObject: {},
+      newPicture: {},
+      newPictures: [],
     }
   },
   methods: {
@@ -106,7 +109,8 @@ export default {
     createBase64Image(fileObject) {
       const reader = new FileReader();
       reader.onload = () => {
-        this.piltObject.pictureData = reader.result;
+        this.newPicture.data = reader.result;
+        this.newPictures.push(this.newPicture);
         console.log(this.piltObject)
       };
       reader.onerror = function (error) {
@@ -114,16 +118,16 @@ export default {
       }
       reader.readAsDataURL(fileObject);
     },
-    sendImageDataToDatabase: function () {
-      this.piltObject.itemId = this.selectedItem.itemId;
-      this.$http.post("/upload/image", this.piltObject
-      ).then(response => {
-        console.log(this.piltObject)
-        console.log(response.data)
-      }).catch(error => {
-        console.log(error)
-      })
-    },
+    // sendImageDataToDatabase: function () {
+    //   this.piltObject.itemId = this.selectedItem.itemId;
+    //   this.$http.post("/upload/image", this.piltObject
+    //   ).then(response => {
+    //     console.log(this.piltObject)
+    //     console.log(response.data)
+    //   }).catch(error => {
+    //     console.log(error)
+    //   })
+    // },
     submitForm: function () {
       switch (this.radioButton) {
         case "1":
@@ -219,6 +223,11 @@ export default {
         subGroupName: this.selectedSubGroup.name,
         price: this.itemPriceField,
         description: this.itemDescriptionField,
+        pictures: this.newPictures
+      }
+      if (itemRequest.pictures.isEmpty) {
+        alert("Please add at least 1 image to the item.")
+        return;
       }
       this.$http.post("/add/item", itemRequest
       ).then(response => {
@@ -230,13 +239,16 @@ export default {
     },
 
     updateItem: function () {
-      let itemDto = {
+      let itemRequest = {
         itemId: this.itemId,
         name: this.itemNameField,
+        sellerId: this.selectedSeller,
+        subGroupName: this.selectedSubGroup.name,
         price: this.itemPriceField,
         description: this.itemDescriptionField,
+        pictures: this.newPictures
       }
-      this.$http.put("/update/item", itemDto
+      this.$http.put("/update/item", itemRequest
       ).then(response => {
         alert((response.data.message === null) ? response.data.error : response.data.message)
       }).catch(error => {
@@ -254,6 +266,19 @@ export default {
       }).catch(error => {
         console.log(error)
       })
+    },
+    deleteItemImage: function (id) {
+      this.$http.delete("/delete/item/picture", {
+            params: {
+              id: id
+            }
+          }
+      ).then(response => {
+        alert((response.data.message === null) ? response.data.error : response.data.message)
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
     }
 
   },
@@ -266,7 +291,7 @@ export default {
 
 <style>
 
-.gallery {
+.itemGallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   grid-gap: 1rem;
@@ -275,9 +300,8 @@ export default {
   padding: 0 5rem;
 }
 
-.gallery-panel img {
-  width: 20%;
-  height: 22vw;
+.itemGallery-panel img {
+  height: 100px;
   object-fit: cover;
   border-radius: 0.75rem;
 }
