@@ -1,9 +1,26 @@
 <template>
   <div>
-    <img alt="Vue logo" src="../assets/logo.png">
-    <h1>Shopping cart order</h1>
-    Order Number: {{ orderNumber }}
+    <div>
+      <main>
+        <section class="relative w-full h-full py-40 min-h-screen-75">
+          <div
+              class="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-cover"
+              :style="`background-image: url('https://viraito.ee/wp-content/uploads/2019/11/banner01-2048x798.jpg');`"
+          ></div>
+          <router-view />
+          <footer-small absolute />
+        </section>
+      </main>
+    </div>
+<!--    <img alt="Vue logo" src="../assets/logo.png">-->
+    <br>
+    <br>
+    <h1>Shopping cart</h1>
+    <br>
+    Order №: {{ orderNumber }}
+    <br>
     <div v-if="orderItemDtos.length > 0">
+      <br>
       <table>
         <tr>
           <th>ITEM ID</th>
@@ -11,7 +28,7 @@
           <th>ITEM PRICE</th>
           <th>ITEM QUANTITY</th>
           <th>ITEM SUM</th>
-          <th></th>
+          <th>UPDATE SUM</th>
           <th></th>
         </tr>
         <tr v-for="(row, index) in orderItemDtos" @key="index">
@@ -24,10 +41,10 @@
           <td>{{ row.sum = row.quantity * row.itemPrice }}</td>
 
           <td id="itemButton" v-on:click="calculateItemSum">
-            <button> Uuenda valikut</button>
+            <button> UPDATE</button>
           </td>
           <td id="deleteButton" v-on:click="deleteOrderItem(index)">
-            <button> Kustutada item</button>
+            <button> DELETE</button>
           </td>
         </tr>
         <tr>
@@ -35,13 +52,24 @@
           <td></td>
           <td></td>
           <td></td>
-          <td>Sum {{ itemsSum }} eur</td>
+          <td> </td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td> </td>
+          <td>SUM: {{ itemsSum }} EUR</td>
+          <td></td>
         </tr>
       </table>
     </div>
     <br>
     <select v-model="selectedDeliveryMethod">
-      <option disabled value="">Vali delivery method</option>
+      <option disabled value="">Choose delivery method</option>
       <option v-for="row in deliveryMethods" :value="row ">{{ row.name }}, {{ row.price }} eur,
         {{ row.deliveryTime }}
       </option>
@@ -51,21 +79,85 @@
     <br>
     <br>
     <select v-model="selectedPaymentMethod">
-      <option disabled value="">Vali payment method</option>
+      <option disabled value="">Choose payment method</option>
       <option v-for="row in paymentMethods" :value="row">{{ row.paymentType }}</option>
     </select>
     <br>
     <span>Payment method: {{ selectedPaymentMethod.paymentType }} </span>
     <br>
     <br>
-    <span>TOTAL PRICE: {{ totalPrice }} </span>
     <br>
-    <button v-on:click=" calculateTotalPrice">ARVUTA TOTAL PRICE</button>
+    <button v-on:click=" calculateTotalPrice">TOTAL PRICE</button>
+    <br>
+    <span>Total price: {{ totalPrice }} </span>
     <br>
     <br>
+    <button v-on:click="postOrderAndRedirectHome">CONFIRM</button>
     <br>
-    <button v-on:click="postOrderAndRedirectHome">KINNITA ORDERIT JA MINE HOME PAGILE</button>
     <br>
+
+    <br>
+    <br>
+    <footer class="block py-4">
+      <div class="container mx-auto px-4">
+        <hr class="mb-4 border-b-1 border-blueGray-200" />
+        <div
+            class="flex flex-wrap items-center md:justify-between justify-center"
+        >
+          <div class="w-full md:w-4/12 px-4">
+            <div
+                class="text-sm text-blueGray-500 font-semibold py-1 text-center md:text-left"
+            >
+              Copyright ©
+              <a
+                  href="https://github.com/Rairot/eetsy-front"
+                  class="text-blueGray-500 hover:text-blueGray-700 text-sm font-semibold py-1"
+              >
+                    MRO Creative Team
+              </a>
+            </div>
+          </div>
+          <div class="w-full md:w-8/12 px-4">
+            <ul class="flex flex-wrap list-none md:justify-end justify-center">
+              <li>
+                <a
+                    href="https://github.com/Rairot/eetsy-front"
+                    class="text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3"
+                >
+                      Creative Team
+                </a>
+              </li>
+              <li>
+                <a
+                    href="https://github.com/Rairot/eetsy-front"
+                    class="text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3"
+                >
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a
+                    href="https://github.com/Rairot/eetsy-front"
+                    class="text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3"
+                >
+                  Blog
+
+                </a>
+              </li>
+              <li>
+                <a
+                    href="https://github.com/Rairot/eetsy-front"
+                    class="text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3"
+                >
+                  MRO License
+
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -90,6 +182,8 @@ th {
   border-width: 1px;
   border-color: lightgray;
 }
+
+
 </style>
 <script>
 export default {
@@ -119,6 +213,7 @@ export default {
     }
   },
   methods: {
+
 
     calculateTotalPrice: function () {
       this.totalPrice = 0;
@@ -156,7 +251,7 @@ export default {
     },
 
     deleteOrderItem: function (index) {
-     this.orderItemDtos.splice(index,1)
+      this.orderItemDtos.splice(index,1)
 
     },
 
@@ -186,11 +281,6 @@ export default {
       })
     },
 
-
-    // redirectToConfirmPage: function (orderId) {
-    //   this.$router.push({name: 'Confirm', query: {name: name}})
-    // },
-
   },
 
 
@@ -203,8 +293,7 @@ export default {
 }
 </script>
 
-<!--<style scoped>-->
+<style scoped>
 
-<!--</style>-->
+</style>
 
-<!--<input type="checkbox"id="itemButton" v-on:click="calculateItemSum">-->

@@ -5,6 +5,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 export const eventBus = new Vue();
 
+
 Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 
