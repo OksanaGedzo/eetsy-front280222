@@ -8,7 +8,7 @@
               :style="`background-image: url('https://viraito.ee/wp-content/uploads/2019/11/banner01-2048x798.jpg');`"
           ></div>
           <router-view />
-          <footer-small absolute />
+<!--          <footer-small absolute />-->
         </section>
       </main>
     </div>
@@ -67,6 +67,10 @@
         </tr>
       </table>
     </div>
+
+
+
+
     <br>
     <select v-model="selectedDeliveryMethod">
       <option disabled value="">Choose delivery method</option>
@@ -87,15 +91,22 @@
     <br>
     <br>
     <br>
-    <button v-on:click=" calculateTotalPrice">TOTAL PRICE</button>
+<!--    <button v-on:click=" calculateTotalPrice">CALCULATE THE TOTAL PRICE</button>-->
+    <br>
+    <button class="bg-emerald-500 active:bg-emerald-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+            v-on:click=" calculateTotalPrice">CALCULATE THE TOTAL PRICE</button>
+    <br>
+    <br>
     <br>
     <span>Total price: {{ totalPrice }} </span>
     <br>
     <br>
-    <button v-on:click="postOrderAndRedirectHome">CONFIRM</button>
+<!--    <button v-on:click="postOrderAndRedirectHome">CONFIRM</button>-->
     <br>
     <br>
-
+    <br>
+    <button class="bg-emerald-500 active:bg-emerald-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+            v-on:click="postOrderAndRedirectHome">CONFIRM</button>
     <br>
     <br>
     <footer class="block py-4">
@@ -293,7 +304,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<!--<style scoped>-->
 
-</style>
+<!--</style>-->
 

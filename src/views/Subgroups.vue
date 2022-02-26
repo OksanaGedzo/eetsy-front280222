@@ -8,7 +8,7 @@
               :style="`background-image: url('https://viraito.ee/wp-content/uploads/2019/11/banner01-2048x798.jpg');`"
           ></div>
           <router-view />
-          <footer-small absolute />
+<!--          <footer-small absolute />-->
         </section>
       </main>
     </div>

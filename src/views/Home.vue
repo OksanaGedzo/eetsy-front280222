@@ -6,60 +6,77 @@
           <div
               class="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-cover"
               :style="`background-image: url('https://viraito.ee/wp-content/uploads/2019/11/banner01-2048x798.jpg');`"
-          ></div>
+
+          >
+            <div
+                class="relative pt-32 pb-20 flex content-center items-center justify-center min-h-screen"
+            >
+            <div class="container relative mx-auto">
+              <div class="items-center flex flex-wrap">
+                <div class="w-full lg:w-8/12 px-4 ml-auto mr-auto text-center">
+                  <div class="pr-12">
+                    <h1 class="text-white font-semibold text-5xl">
+                      My favourite Estonian goods
+                    </h1>
+                    <p class="mt-4 text-lg text-white">
+                      Find something memorable, join a community doing good.
+
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+
+          </div>
           <router-view/>
-          <footer-small absolute/>
+          <!--          <footer-small absolute/>-->
         </section>
       </main>
     </div>
-
-
-
-
-    <section class="pt-20 pb-48" >
+    <section class="pt-20 pb-48">
       <div class="container mx-auto px-4">
         <div class="flex flex-wrap justify-center text-center mb-24">
-          <div class="w-full lg:w-6/12 px-4" >
-            <h2 class="text-4xl font-semibold">Here are our heroes</h2>
+          <div class="w-full lg:w-6/12 px-4">
+            <h2 class="text-4xl font-semibold">Made with love</h2>
             <p class="text-lg leading-relaxed m-4 text-blueGray-500">
-              According to the National Oceanic and Atmospheric
-              Administration, Ted, Scambos, NSIDClead scentist, puts the
-              potentially record maximum.
+              Take a piece of Estonia with you, whether in the form of a pair of hand-knitted woollen socks,
+              playful mittens, carved wooden mugs, felt hats, juniper coasters or rustic jewellery.
             </p>
           </div>
         </div>
-        <div class="flex flex-wrap"  >
-          <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4" >
+        <div class="flex flex-wrap">
+          <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
             <div class="px-6" v-for="category in primaryGroupObjects">
               <img
                   alt="..."
                   class="max-w-full rounded-lg shadow-lg"
                   src="https://lh3.googleusercontent.com/6X9PZteF-GRRYf7poNkQCBjHqG37mqaFR7kS3-kPhda_g_cXCKpZEcT1M1KivWf7G99_VqHTn9vhAOvQTBkdtRs9BJQ-qZ44Dj7gorMxhoh_argq5JoHvwB3kKtyw1kIoLokyxOxUZFJqRBswjjSHnztYM1rxOdBDmWWcsSPzTGeiqz-usRfIsVa0U46uPBoMn0LwIeqGu1mrnZCxBtesU5HDj-E8ceZV40ZeXng7uI8tLGMKKEdBtu5_PG1Y8gnLJwV6xdkrJ62QXmuCGK-LSMIWffBeQdbeU-i_HSxQwp04xH8asjj7Y34OY477XFTa9latVwUQ1xipT68Kq5_nP25pnrbmJo3YPJAr4QS77BWweXJgNxgTXsCgoXRabHeXCJO1YPu7JISX5T29Ndfw_OMSVOmRYQ-3_Ne_U0JL3BJNi4XHECHRQFoMvhAdZeIAwTYVUB7heROdTzbd8MTZqEH-0Kv8ksyyQK70Ivmigi4LV4TlMiStcc301KH1eJcEBuflyEO8y8ml-Ikaelhi51sRPErUzGaq9C2i6pkGkUI29JmgHWXeoGLj4tRpjhoB9QFKgKmp4cnzUxk30qrsVDvh50PTCr7CBnsgQjMyVlRYKLxcv2EQLWKReIEVPnA6HZg1mh5zlYFEsRMoiPwqErKw-8kn9JHByu7-VmmNTQmSECTniCQqpMS1AoapO7Rxz05IerqUVuNYMgwt3zblwrt=s903-no?authuser=0"
-
               />
-              <div class="pt-6 text-center"  >
-                <h5 class="text-xl font-bold" >Handcraft</h5>
+              <div class="pt-6 text-center">
+                <h5 class="text-xl font-bold">Handcraft</h5>
                 <p
                     class="mt-1 text-sm text-blueGray-400 uppercase font-semibold"
                 >
                   For you, for home
                 </p>
-<!--                {{ this.userId }}-->
-<!--                <div class="gallery">-->
-<!--                  <div class="gallery-panel" v-for="category in primaryGroupObjects"-->
-<!--                       v-on:click="redirectToSubgroupPageWith(category.id)">-->
-<!--                    <img src="..\assets\logo.png">-->
-<!--                    {{ category.name }}-->
-<!--                  </div>-->
-<!--                </div>-->
-                <div class="mt-6" >
-                  <div class="py-6 px-3 mt-32 sm:mt-0" >
-                    <button class="bg-emerald-500 active:bg-emerald-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+                <!--                {{ this.userId }}-->
+                <!--                <div class="gallery">-->
+                <!--                  <div class="gallery-panel" v-for="category in primaryGroupObjects"-->
+                <!--                       v-on:click="redirectToSubgroupPageWith(category.id)">-->
+                <!--                    <img src="..\assets\logo.png">-->
+                <!--                    {{ category.name }}-->
+                <!--                  </div>-->
+                <!--                </div>-->
+                <div class="mt-6">
+                  <div class="py-6 px-3 mt-32 sm:mt-0">
+                    <button
+                        class="bg-emerald-500 active:bg-emerald-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
 
                         v-on:click="redirectToSubgroupPageWith(category.id)">
-<!--                      {{ category.name }}-->
-<!--&lt;!&ndash;                        type="button"&ndash;&gt;-->
-<!--                    >-->
+                      <!--                      {{ category.name }}-->
+                      <!--&lt;!&ndash;                        type="button"&ndash;&gt;-->
+                      <!--                    >-->
                       Shop now
 
                     </button>
@@ -148,30 +165,6 @@
                       Shop now
                     </button>
                   </div>
-                  <!--                  <button-->
-                  <!--                      class="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"-->
-                  <!--                      type="button"-->
-                  <!--                  >-->
-                  <!--                    <i class="fab fa-dribbble"></i>-->
-                  <!--                  </button>-->
-                  <!--                  <button-->
-                  <!--                      class="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"-->
-                  <!--                      type="button"-->
-                  <!--                  >-->
-                  <!--                    <i class="fab fa-google"></i>-->
-                  <!--                  </button>-->
-                  <!--                  <button-->
-                  <!--                      class="bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"-->
-                  <!--                      type="button"-->
-                  <!--                  >-->
-                  <!--                    <i class="fab fa-twitter"></i>-->
-                  <!--                  </button>-->
-                  <!--                  <button-->
-                  <!--                      class="bg-blueGray-700 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"-->
-                  <!--                      type="button"-->
-                  <!--                  >-->
-                  <!--                    <i class="fab fa-instagram"></i>-->
-                  <!--                  </button>-->
                 </div>
               </div>
             </div>
@@ -205,12 +198,12 @@
         <div class="flex flex-wrap text-center justify-center">
           <div class="w-full lg:w-6/12 px-4">
             <h2 class="text-4xl font-semibold text-white">
-              Build something
+              #visitestonia
             </h2>
             <p class="text-lg leading-relaxed mt-4 mb-4 text-blueGray-400">
-              Put the potentially record low maximum sea ice extent tihs year
-              down to low ice. According to the National Oceanic and
-              Atmospheric Administration, Ted, Scambos.
+              Local handicraft showing off traditional Estonian patterns is just about as Estonian as you can go with your gift.
+              Knitting, crocheting and embroidery traditions in Estonia date back centuries and here you can find items like no-where else in the world.
+              Look for natural fabrics like wool, cotton and linen and wooden kitchen utensils carved from the juniper tree.
             </p>
           </div>
         </div>
@@ -333,7 +326,7 @@
     </section>
     <footer class="block py-4">
       <div class="container mx-auto px-4">
-        <hr class="mb-4 border-b-1 border-blueGray-200" />
+        <hr class="mb-4 border-b-1 border-blueGray-200"/>
         <div
             class="flex flex-wrap items-center md:justify-between justify-center"
         >
@@ -391,8 +384,6 @@
         </div>
       </div>
     </footer>
-
-
   </div>
 </template>
 

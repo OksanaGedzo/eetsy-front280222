@@ -8,10 +8,11 @@
               :style="`background-image: url('https://viraito.ee/wp-content/uploads/2019/11/banner01-2048x798.jpg');`"
           ></div>
           <router-view />
-          <footer-small absolute />
+<!--          <footer-small absolute />-->
         </section>
       </main>
     </div> <section class="pb-20 bg-blueGray-200 -mt-24">
+
     <div class="container mx-auto px-4">
       <div class="flex flex-wrap">
         <div class="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
@@ -24,10 +25,9 @@
               >
                 <i class="fas fa-award"></i>
               </div>
-              <h6 class="text-xl font-semibold">Awarded Agency</h6>
+              <h6 class="text-xl font-semibold"> VERY<br></h6>
               <p class="mt-2 mb-4 text-blueGray-500">
-                Divide details about your product or agency work into parts.
-                A paragraph describing a feature will be enough.
+                TITLE: {{ itemObject.name }}
               </p>
             </div>
           </div>
@@ -43,10 +43,8 @@
               >
                 <i class="fas fa-retweet"></i>
               </div>
-              <h6 class="text-xl font-semibold">Free Revisions</h6>
+              <h6 class="text-xl font-semibold"> ABOUT SELLER: {{ itemObject.sellerName }} <br></h6>
               <p class="mt-2 mb-4 text-blueGray-500">
-                Keep you user engaged by providing meaningful information.
-                Remember that by this time, the user is curious.
               </p>
             </div>
           </div>
@@ -62,7 +60,7 @@
               >
                 <i class="fas fa-fingerprint"></i>
               </div>
-              <h6 class="text-xl font-semibold">Verified Company</h6>
+              <h6 class="text-xl font-semibold">  <br></h6>
               <p class="mt-2 mb-4 text-blueGray-500">
                 Write a few lines about each one. A paragraph describing a
                 feature will be enough. Keep you user engaged!
@@ -107,7 +105,7 @@
           >
             <img
                 alt="..."
-                src="https://lh3.googleusercontent.com/c4zP9WzKlR0K5kG3awHSK3lLCOD1uX9YViY7j0CB-R164Y4GRqD8EGyLOgPcAUB3yoD7W-15VH7bS7PJVs6F2M6feg8pDvR5EiTQpP8kYybMMVPP9Y-S7CH7eSATXFGNd17ae98KSX9fxEUoqSu8MBiUCCp2_QtD5A8YLFEolWKuFu9pzxhyZCvy-aXAniMuu2x-lYUXJUWEbyn9dSHG7FHHKGm8X064IpPIjcXEf_HHNDe1X21A7c5VvrTiUBplFlEpTxMIOFscveBosSEoqQKoA3Rivvs0yEXq97JSGwfqsCxNFEQdD1oOzKLXkywN_6udI6FwtooXGbich5vTjAJHRI2pxO40JCQn2Tn3vzqDW50PKuXM-UOBLiEeSikasxiBoWFbt1tM-c50xwDc9hFXdGEzS0X018PcCWSjAj8e3dewrsrs7sOnYusfzxKw5rIwscFsEZ76hBLl6RwP73EbNbuCQTFJDbkYLcI0rhwrQ0WnNxxb5Nb435ipYZxqtjvle76WZ4SPhUcZY9bCS-9wERw3Oq5ygavsF_dapgx1Vk0x3sH68Z5ruhP-BLzxVvFJ3FM5cjRUsg7p5cTgs1hZWfT8y1Y0eY55iYi6k6UX0dDhLR7L6EH1_cKcNTpmBseNXR6S3J8I0yO_t7wjxkZZwdEVZ1lMMMEuloF5T1Oc0lTDi7o5CwoZh9gyEJ7LZJPn1fsHAQ4mkkJJfsKsr6-x=s903-no?authuser=0"
+                src="https://lh3.googleusercontent.com/5rWgBQiz1hhEIFs4z0ThpkQwZzmOE6gQCKAVB7jNnjIV-uMs7tZHnGe_J2vYkUkqKo_o49Ep47M38KPM8kV4OkzhzebQmmOPMzO6AdW92yQ_SCmxM2zd3TXMkro8XphVa-GSEO7I1tcq1c-qHjjsOBI3TlO3_xbfDiq7fR7OD6_BnQzl_SpmXlXqgwo_oydfnOBXKray_QfrPpWfm-vDdzXeCM629heI2Fp9elJ9U2fLByxU0GJEmU8gxLM7PxmntDV3oKSBIHM7yjoI4KFGXwgnDDuu1N51t_qLzQpH6E8KlLUWkGx67wv0UR22Or2t-V_0tHFRWAT3uUYualH8_GMNZsOyc9rBStB1UN7SAx3AB7UVdnuax9ElIxMG133OC4igaAySlPxWQlMTzk6YKinRqtDjzxA8ZSM6g1PbTg3QMPzicweXH1VnGJlXNAd98A1OM63Kowiqsxp1t4SGpxO_Hl5CEbnsK4z0zg-tsmf-wSe8Q2NKVQOClywcKcyoDqvAOneNEF_3JP5x6jivH-K_XSOC5JLnwj3AHBhouk9xnQ2enGpAYKACj1bC5oDrVLFMMO-ZOLKr9boNVRzuzRAfEgcVQLGk0z_fBg7b66L9Inmnxe3C6PsmhmS5STKOvnHz1IX1ZbP38MgqPTcsUN3UMi48bmWcjVDVMjJCfadjuU26c3Z6wXriyFvTaRohG-1bpb6JoE5WlBVkRgXiP2Zo=s903-no?authuser=0"
                 class="w-full align-middle rounded-t-lg"
             />
             <blockquote class="relative p-8 mb-4">
@@ -163,7 +161,7 @@
             <img
                 alt="..."
                 class="max-w-full rounded-lg shadow-lg"
-                src="https://lh3.googleusercontent.com/4E1RZGM8NT5VJQ1afCnPRp0UqH1RnUb8LHE7r9DGl5N9UVd_wBlLXMly2sX7XY-wjW9fLb4810_XbyDA9QS6VH3TmsIehRtehkXYQptDxV4TBZzQ96-hbNOZiOi3wMCwJVqCjlqexkJ55gaZNLnZSk8swWPdgO8SwzN1Hx5eC0Wl_-_aFEM-Ve5ZpyM0sSqc7YBCAqP0jUFDDVzdiXpvzZOmLY_pFOMlKk2hRM3vmBDaJnzFnwx0g1ly9fnrh1G31RcVJvB5SubN3re43uIk7E76V56pHm1RbbNRedBolQCB0Gfxz27rT9kQ-mjoUqi9CLbuqHFmZSK8fAkPlNoqTB5gsvi0NBsUvPysr0kUI04ZyMTVfoCVBZlBcad4R24scm8_ep-upn_zjTt7JDsf5B9jZBWHq0oG4Vj7R9MMcTqy1LbQqXljqR8j9QVpXaJDuVLtV3768o1fEy0XdzZvgpFAfUTm1280TJuzyEC3Zu7pGfwx7TuYfG8cgQmHLuUBK7Sh3CsKDnaMn9CQ6S9Rx9_iFDX-35DPCiOgJ1ai4paaIpKUs2zO81QYkRDmL-8HmmX6oeFhADxnHh3MpwpeMM3un3BnTlhCyGmLddqehZlXzlulMiF4S8uOgHiosd4hjJnkI2dcayP61XfPQ6enTNHPoZWNv7UdLGLI1ZJuNA23-9yJ1LH-_oUBx8G0XQ5OiKQkbjGmJU0rmtOgGONKMNm2=s903-no?authuser=0"
+                src="https://lh3.googleusercontent.com/5rWgBQiz1hhEIFs4z0ThpkQwZzmOE6gQCKAVB7jNnjIV-uMs7tZHnGe_J2vYkUkqKo_o49Ep47M38KPM8kV4OkzhzebQmmOPMzO6AdW92yQ_SCmxM2zd3TXMkro8XphVa-GSEO7I1tcq1c-qHjjsOBI3TlO3_xbfDiq7fR7OD6_BnQzl_SpmXlXqgwo_oydfnOBXKray_QfrPpWfm-vDdzXeCM629heI2Fp9elJ9U2fLByxU0GJEmU8gxLM7PxmntDV3oKSBIHM7yjoI4KFGXwgnDDuu1N51t_qLzQpH6E8KlLUWkGx67wv0UR22Or2t-V_0tHFRWAT3uUYualH8_GMNZsOyc9rBStB1UN7SAx3AB7UVdnuax9ElIxMG133OC4igaAySlPxWQlMTzk6YKinRqtDjzxA8ZSM6g1PbTg3QMPzicweXH1VnGJlXNAd98A1OM63Kowiqsxp1t4SGpxO_Hl5CEbnsK4z0zg-tsmf-wSe8Q2NKVQOClywcKcyoDqvAOneNEF_3JP5x6jivH-K_XSOC5JLnwj3AHBhouk9xnQ2enGpAYKACj1bC5oDrVLFMMO-ZOLKr9boNVRzuzRAfEgcVQLGk0z_fBg7b66L9Inmnxe3C6PsmhmS5STKOvnHz1IX1ZbP38MgqPTcsUN3UMi48bmWcjVDVMjJCfadjuU26c3Z6wXriyFvTaRohG-1bpb6JoE5WlBVkRgXiP2Zo=s903-no?authuser=0"
             />
           </div>
           <div class="w-full md:w-5/12 ml-auto mr-auto px-4">
@@ -232,23 +230,32 @@
         </div>
       </div>
     </section>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
 
-    ITEM TITLE: {{ itemObject.name }} <br>
-    ITEM SELLER: {{ itemObject.sellerName }} <br>
-    ITEM DESCRIPTION: {{ itemObject.description }} <br>
-    ITEM PRICE: {{ itemObject.price }} <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    PRICE: {{ itemObject.price }} <br>
     <br>
     <input type="number" value="1" v-model="itemQuantity">
-    <button v-on:click="addOrderItemToDatabase">   ADD TO CART</button>
+<!--    <button v-on:click="addOrderItemToDatabase">   ADD TO CART</button>-->
+<!--    <br>-->
+
+    <button
+        class="bg-emerald-500 text-white active:bg-emerald-600 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+        type="button" v-on:click="addOrderItemToDatabase"
+    >
+      <i class="fas fa-arrow-alt-circle-down"></i> ADD TO SHOPPING CART
+    </button>
     <br>
     <br>
-    <br>
-    <br>
+<!--    <br>-->
+<!--    <input type="number" value="1" v-model="itemQuantity">-->
+<!--    <button v-on:click="addOrderItemToDatabase">   ADD TO CART</button>-->
+<!--    <br>-->
+<!--    <br>-->
+
+
     <footer class="block py-4">
       <div class="container mx-auto px-4">
         <hr class="mb-4 border-b-1 border-blueGray-200" />
