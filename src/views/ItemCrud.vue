@@ -3,11 +3,11 @@
     <div>
       <div>
         <span> Select item operation: </span>
-        <input type="radio" id="add" value="1" v-model="radioButton">
+        <input type="radio" id="add" value="1" v-model="radioButton" @change="emptyLists">
         <label for="add">Add</label>
-        <input type="radio" id="edit" value="2" v-model="radioButton">
+        <input type="radio" id="edit" value="2" v-model="radioButton" @change="emptyLists">
         <label for="edit">Edit</label>
-        <input type="radio" id="delete" value="3" v-model="radioButton">
+        <input type="radio" id="delete" value="3" v-model="radioButton" @change="emptyLists">
         <label for="delete">Delete</label>
       </div>
 
@@ -55,17 +55,17 @@
         </tr>
         <tr>
           <div v-if="radioButton > 0">
-            <input type="file" @change="handleImage" accept="image/x-png,image/jpeg">
-            <!--            <button v-on:click="sendImageDataToDatabase">Add Image</button>-->
-<!--            todo add ability to add several pictures when making a new item-->
+            <input type="file" @change="handleImage" accept="image/x-png,image/jpeg"> <br>
           </div>
         </tr>
       </table>
-      <div class="itemGallery">
-        <div class="itemGallery-panel" v-for="image in itemPictures">
-<!--        <div class="itemGallery-panel" v-for="image in ((itemPictures === null)?newPictures:itemPictures)">-->
-          <img :src="image.data"><br>
-          <button v-on:click="deleteItemImage(image.id)">Delete</button>
+      <div v-if="itemPictures !== null">
+        <h4>Image Gallery</h4>
+        <div class="itemGallery">
+          <div class="itemGallery-panel" v-for="image in itemPictures">
+            <img :src="image.data"><br>
+            <button v-on:click="deleteItemImage(image)">Delete</button>
+          </div>
         </div>
       </div>
     </div>
@@ -102,6 +102,16 @@ export default {
     }
   },
   methods: {
+    emptyLists() {
+      this.selectedPrimaryGroup = null;
+      this.selectedSubGroup = null;
+      this.selectedItem = null;
+      this.itemPictures = null;
+      this.itemId = null;
+      this.itemNameField = null;
+      this.itemPriceField = null;
+      this.itemDescriptionField = null;
+    },
     handleImage(event) {
       const selectedImage = event.target.files[0];
       this.createBase64Image(selectedImage);
@@ -109,25 +119,22 @@ export default {
     createBase64Image(fileObject) {
       const reader = new FileReader();
       reader.onload = () => {
-        this.newPicture.data = reader.result;
-        this.newPictures.push(this.newPicture);
-        console.log(this.piltObject)
+        // this.newPicture.data = reader.result;
+        let tempPicture = new Object();
+        tempPicture.data = reader.result;
+        if (this.itemPictures === null) {
+          this.itemPictures = [tempPicture]
+        } else {
+          this.itemPictures.push(tempPicture);
+        }
+
+        console.log(this.itemPictures)
       };
       reader.onerror = function (error) {
         alert(error);
       }
       reader.readAsDataURL(fileObject);
     },
-    // sendImageDataToDatabase: function () {
-    //   this.piltObject.itemId = this.selectedItem.itemId;
-    //   this.$http.post("/upload/image", this.piltObject
-    //   ).then(response => {
-    //     console.log(this.piltObject)
-    //     console.log(response.data)
-    //   }).catch(error => {
-    //     console.log(error)
-    //   })
-    // },
     submitForm: function () {
       switch (this.radioButton) {
         case "1":
@@ -223,7 +230,7 @@ export default {
         subGroupName: this.selectedSubGroup.name,
         price: this.itemPriceField,
         description: this.itemDescriptionField,
-        pictures: this.newPictures
+        pictures: this.itemPictures
       }
       if (itemRequest.pictures.isEmpty) {
         alert("Please add at least 1 image to the item.")
@@ -267,20 +274,31 @@ export default {
         console.log(error)
       })
     },
-    deleteItemImage: function (id) {
-      this.$http.delete("/delete/item/picture", {
-            params: {
-              id: id
+    removeNewItemPreviewImage(image) {
+      let i = this.itemPictures.map(picture => picture.data).indexOf(image.data);
+      this.itemPictures.splice(i, 1);
+    },
+    deleteItemImage: function (image) {
+      //objekti sees võib elada misiganes muutuja või teine objekt
+      //sellised mitte eksisteerivad muutujad nagu 'image.id' ei ole NULL vaid javascriptis 'undefined'
+      if (typeof image.id === 'undefined') {
+        this.removeNewItemPreviewImage(image)
+      } else {
+        let id = image.id;
+        this.$http.delete("/delete/item/picture", {
+              params: {
+                id: id
+              }
             }
-          }
-      ).then(response => {
-        alert((response.data.message === null) ? response.data.error : response.data.message)
-        console.log(response.data)
-      }).catch(error => {
-        console.log(error)
-      })
+        ).then(response => {
+          alert((response.data.message === null) ? response.data.error : response.data.message)
+          this.getItemPictures()
+          console.log(response.data)
+        }).catch(error => {
+          console.log(error)
+        })
+      }
     }
-
   },
   beforeMount() {
     this.getAllPrimaryGroups();
@@ -293,16 +311,24 @@ export default {
 
 .itemGallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
   grid-gap: 1rem;
   max-width: 50%;
-  margin: 5rem auto;
-  padding: 0 5rem;
+  margin: 1rem auto;
+  padding: 1rem 5rem;
+  border: 1px dotted;
+  border-color: darkgray;
+  border-radius: 0.75rem;
+
+
 }
 
 .itemGallery-panel img {
   height: 100px;
+  width: auto;
   object-fit: cover;
+  border: 1px solid;
   border-radius: 0.75rem;
+  border-color: darkgray;
 }
 </style>
