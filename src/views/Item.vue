@@ -25,9 +25,9 @@
               >
                 <i class="fas fa-award"></i>
               </div>
-              <h6 class="text-xl font-semibold"> VERY<br></h6>
+              <h6 class="text-xl font-semibold"> Point 1 <br></h6>
               <p class="mt-2 mb-4 text-blueGray-500">
-                TITLE: {{ itemObject.name }}
+               Handcraft
               </p>
             </div>
           </div>
@@ -43,8 +43,9 @@
               >
                 <i class="fas fa-retweet"></i>
               </div>
-              <h6 class="text-xl font-semibold"> ABOUT SELLER: {{ itemObject.sellerName }} <br></h6>
+              <h6 class="text-xl font-semibold"> Point 2 <br></h6>
               <p class="mt-2 mb-4 text-blueGray-500">
+                Real wool
               </p>
             </div>
           </div>
@@ -60,10 +61,11 @@
               >
                 <i class="fas fa-fingerprint"></i>
               </div>
-              <h6 class="text-xl font-semibold">  <br></h6>
+              <h6 class="text-xl font-semibold"> Point 3 <br></h6>
               <p class="mt-2 mb-4 text-blueGray-500">
-                Write a few lines about each one. A paragraph describing a
-                feature will be enough. Keep you user engaged!
+               Unique
+
+
               </p>
             </div>
           </div>
@@ -78,24 +80,20 @@
             <i class="fas fa-user-friends text-xl"></i>
           </div>
           <h3 class="text-3xl mb-2 font-semibold leading-normal">
-            Working with us is a pleasure
+            About good:
           </h3>
           <p
               class="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600"
           >
-            Don't let your uses guess by attaching tooltips and popoves to
-            any element. Just make sure you enable them first via
-            JavaScript.
+            Very good!
           </p>
           <p
               class="text-lg font-light leading-relaxed mt-0 mb-4 text-blueGray-600"
           >
-            The kit comes with three pre-built pages to help you get started
-            faster. You can change the text and images and you're good to
-            go. Just make sure you enable them first via JavaScript.
+            Title from database: {{ itemObject.name }}
           </p>
           <router-link to="/" class="font-bold text-blueGray-700 mt-8">
-            Check Vue Notus!
+            Be unique!
           </router-link>
         </div>
 
@@ -121,12 +119,10 @@
                 ></polygon>
               </svg>
               <h4 class="text-xl font-bold text-white">
-                Top Notch Services
+                National woolen hat
               </h4>
               <p class="text-md font-light mt-2 text-white">
-                The Arctic Ocean freezes every winter and much of the
-                sea-ice then thaws every summer, and that process will
-                continue whatever happens.
+                {{ itemObject.price }} euro
               </p>
             </blockquote>
           </div>
@@ -171,11 +167,9 @@
               >
                 <i class="fas fa-rocket text-xl"></i>
               </div>
-              <h3 class="text-3xl font-semibold">A growing company</h3>
+              <h3 class="text-3xl font-semibold">A growing Estonian company</h3>
               <p class="mt-4 text-lg leading-relaxed text-blueGray-500">
-                The extension comes with three pre-built pages to help you get
-                started faster. You can change the text and images and you're
-                good to go.
+                About seller from database: {{ itemObject.sellerName }}
               </p>
               <ul class="list-none mt-6">
                 <li class="py-2">
@@ -189,7 +183,7 @@
                     </div>
                     <div>
                       <h4 class="text-blueGray-500">
-                        Carefully crafted components
+                        Carefully crafted
                       </h4>
                     </div>
                   </div>
@@ -205,7 +199,7 @@
                     </div>
                     <div>
                       <h4 class="text-blueGray-500">
-                        Amazing page examples
+                        Amazing examples
                       </h4>
                     </div>
                   </div>
@@ -247,6 +241,10 @@
     >
       <i class="fas fa-arrow-alt-circle-down"></i> ADD TO SHOPPING CART
     </button>
+    <br>
+    <br>
+    <br>
+    <br>
     <br>
     <br>
 <!--    <br>-->
