@@ -29,8 +29,6 @@
       <br>
       <router-link to="/itemCrud">Add, Edit, Remove Items</router-link>
       <br><br>
-      <router-link to="/subgroupCrud">Add, Edit, Remove Sub Groups</router-link>
-      <br><br>
       <router-link to="/primaryGroupCrud">Add, Edit, Remove Primary Groups</router-link>
       <br>
     </div>

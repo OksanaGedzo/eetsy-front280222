@@ -10,7 +10,6 @@ import Order from "@/views/Order";
 import Admin from "@/views/Admin";
 import Account from "@/views/Account";
 import ItemCrud from "@/views/ItemCrud";
-import SubgroupCrud from "@/views/SubgroupCrud";
 import PrimaryGroupCrud from "@/views/PrimaryGroupCrud";
 
 Vue.use(VueRouter)
@@ -20,11 +19,6 @@ const routes = [
     path: '/account',
     name: 'Account',
     component: Account
-  },
-  {
-    path: '/subgroupCrud',
-    name: 'SubgroupCrud',
-    component: SubgroupCrud
   },
   {
     path: '/primaryGroupCrud',

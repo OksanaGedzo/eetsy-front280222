@@ -18,9 +18,12 @@
         </select>
         <br>
         SubGroup:
-        <select class="opts" v-model="selectedSubGroup" @change="populateItemList(); getAllSellers()">
+        <select v-if="!addingNewSubGroup" class="opts" v-model="selectedSubGroup"
+                @change="populateItemList(); getAllSellers()">
           <option v-for="row in subGroups" :value="row">{{ row.name }}</option>
         </select>
+        <input v-if="addingNewSubGroup" value="newSubGroupNameField" v-model="newSubGroupNameField">
+        <button v-if="radioButton==1" v-on:click="addNewSubGroup();getAllSellers()">{{ subGroupButtonText }}</button>
         <br>
         <div v-if="radioButton > 1">
           Item:
@@ -53,19 +56,31 @@
             <button v-on:click="submitForm">Confirm</button>
           </td>
         </tr>
-        <tr>
-          <div v-if="radioButton > 0">
-            <input type="file" @change="handleImage" accept="image/x-png,image/jpeg"> <br>
-          </div>
-        </tr>
       </table>
+      <div v-if="radioButton > 0">
+        <input type="file" @change="handleImage" accept="image/x-png,image/jpeg"> <br>
+      </div>
       <div v-if="itemPictures !== null">
-        <h4>Image Gallery</h4>
+        <h4>Item Image Gallery</h4>
         <div class="itemGallery">
           <div class="itemGallery-panel" v-for="image in itemPictures">
             <img :src="image.data"><br>
             <button v-on:click="deleteItemImage(image)">Delete</button>
           </div>
+        </div>
+      </div>
+
+      <div v-if="newSubGroupPictures !== null && addingNewSubGroup">
+        <h4>Sub Group Image Gallery</h4>
+        <div class="itemGallery">
+          <div class="itemGallery-panel" v-for="image in newSubGroupPictures">
+            <img :src="image.pictureData"><br>
+            <button v-on:click="deleteSubGroupImage(image)">Delete</button>
+          </div>
+
+        </div>
+        <div v-if="radioButton">
+          <input type="file" @change="handleSubGroupImage" accept="image/x-png,image/jpeg"> <br>
         </div>
       </div>
     </div>
@@ -84,6 +99,7 @@ export default {
       selectedSeller: null,
       primaryGroups: [],
       subGroups: [],
+      newSubGroupNameField: null,
       items: [],
       sellers: [],
       itemPictures: [],
@@ -93,12 +109,19 @@ export default {
       itemDescriptionField: null,
       radioButton: null,
       piltObjectRequest: null,
+      addingNewSubGroup: false,
       addSelected: false,
       editSelected: false,
       deleteSelected: false,
       piltObject: {},
       newPicture: {},
       newPictures: [],
+      subGroupButtonText: "Add new Sub Group",
+      addNewSubGroupText: "Add new Sub Group",
+      editNewSubGroupText: "Edit current Sub Group",
+      selectOldSubGroupText: "Select an existing Sub Group",
+      newSubGroupPicture: {},
+      newSubGroupPictures: [],
     }
   },
   methods: {
@@ -111,6 +134,27 @@ export default {
       this.itemNameField = null;
       this.itemPriceField = null;
       this.itemDescriptionField = null;
+      this.addingNewSubGroup = false;
+      this.newSubGroupNameField = null;
+    },
+    addNewSubGroup() {
+      if (!this.addingNewSubGroup && this.radioButton == 1) {
+        this.subGroupButtonText = this.selectOldSubGroupText;
+      } else if (this.radioButton == 2) {
+        this.subGroupButtonText = this.editNewSubGroupText;
+        this.newSubGroupNameField = this.selectedSubGroup.name;
+      } else {
+        this.subGroupButtonText = this.addNewSubGroupText;
+      }
+      this.addingNewSubGroup = !this.addingNewSubGroup;
+
+      let newSubGroup = {
+        // id;
+        pictureData: this.newSubGroupPictureData,
+        name: this.newSubGroupNameField,
+      };
+      this.selectedSubGroup = newSubGroup;
+
     },
     handleImage(event) {
       const selectedImage = event.target.files[0];
@@ -126,14 +170,34 @@ export default {
         } else {
           this.itemPictures.push(tempPicture);
         }
-
-        console.log(this.itemPictures)
       };
       reader.onerror = function (error) {
         alert(error);
       }
       reader.readAsDataURL(fileObject);
     },
+
+    handleSubGroupImage(event) {
+      const selectedImage = event.target.files[0];
+      this.createBase64SubGroupImage(selectedImage);
+    },
+    createBase64SubGroupImage(fileObject) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        let tempPicture = new Object();
+        tempPicture.pictureData = reader.result;
+        if (this.newSubGroupPictures === null) {
+          this.newSubGroupPictures = [tempPicture]
+        } else {
+          this.newSubGroupPictures.push(tempPicture);
+        }
+      };
+      reader.onerror = function (error) {
+        alert(error);
+      }
+      reader.readAsDataURL(fileObject);
+    },
+
     submitForm: function () {
       switch (this.radioButton) {
         case "1":
@@ -226,10 +290,12 @@ export default {
         itemId: this.itemId,
         name: this.itemNameField,
         sellerId: this.selectedSeller,
-        subGroupName: this.selectedSubGroup.name,
+        subGroupName: this.selectedSubGroup.name == null ? this.newSubGroupNameField : this.selectedSubGroup.name,
         price: this.itemPriceField,
         description: this.itemDescriptionField,
-        pictures: this.itemPictures
+        pictures: this.itemPictures,
+        subGroupPictureData: this.newSubGroupPictures.length === 0 ? null : this.newSubGroupPictures[0].pictureData,
+        primaryGroupId: this.selectedPrimaryGroup.id,
       }
       if (itemRequest.pictures.isEmpty) {
         alert("Please add at least 1 image to the item.")
@@ -261,24 +327,15 @@ export default {
         console.log(error)
       })
     },
-    deleteItem: function () {
-      this.$http.delete("/delete/item", {
-            params: {
-              itemId: this.itemId
-            }
-          }
-      ).then(response => {
-        alert((response.data.message === null) ? response.data.error : response.data.message)
-      }).catch(error => {
-        console.log(error)
-      })
-    },
     removeNewItemPreviewImage(image) {
       let i = this.itemPictures.map(picture => picture.data).indexOf(image.data);
       this.itemPictures.splice(i, 1);
     },
+    removeNewSubGroupPreviewImage(image) {
+      let i = this.newSubGroupPictures.map(picture => picture.pictureData).indexOf(image.pictureData);
+      this.newSubGroupPictures.splice(i, 1);
+    },
     deleteItemImage: function (image) {
-      //objekti sees võib elada misiganes muutuja või teine objekt
       //sellised mitte eksisteerivad muutujad nagu 'image.id' ei ole NULL vaid javascriptis 'undefined'
       if (typeof image.id === 'undefined') {
         this.removeNewItemPreviewImage(image)
@@ -297,7 +354,28 @@ export default {
           console.log(error)
         })
       }
-    }
+    },
+    deleteSubGroupImage: function (image) {
+      if (typeof image.pictureId === 'undefined') {
+        this.removeNewSubGroupPreviewImage(image)
+      } else if (this.pictures.length == 1) {
+        alert("Primary group must always have exactly 1 image. Add a new image first.")
+      } else {
+        this.removeNewSubGroupPreviewImage(image)
+      }
+    },
+    deleteItem: function () {
+      this.$http.delete("/delete/item", {
+            params: {
+              itemId: this.itemId
+            }
+          }
+      ).then(response => {
+        alert((response.data.message === null) ? response.data.error : response.data.message)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
   },
   beforeMount() {
     this.getAllPrimaryGroups();
