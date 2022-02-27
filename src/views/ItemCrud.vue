@@ -119,11 +119,10 @@ export default {
     createBase64Image(fileObject) {
       const reader = new FileReader();
       reader.onload = () => {
-        // this.newPicture.data = reader.result;
         let tempPicture = new Object();
         tempPicture.data = reader.result;
         if (this.itemPictures === null) {
-          this.itemPictures = [tempPicture]
+          this.itemPictures = [tempPicture] //typeError when .push onto empty list????
         } else {
           this.itemPictures.push(tempPicture);
         }
@@ -285,7 +284,7 @@ export default {
         this.removeNewItemPreviewImage(image)
       } else {
         let id = image.id;
-        this.$http.delete("/delete/item/picture", {
+        this.$http.delete("/delete/picture", {
               params: {
                 id: id
               }
