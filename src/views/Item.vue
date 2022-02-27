@@ -85,7 +85,7 @@
           <p
               class="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600"
           >
-            Very good!
+            Very good feedback
           </p>
           <p
               class="text-lg font-light leading-relaxed mt-0 mb-4 text-blueGray-600"
@@ -258,9 +258,14 @@
 
     <br>
     <br>
+
     <br>
-    <br>
-    PRICE: {{ itemObject.price }} <br>
+    <p
+        class="mt-1 text-sm text-blueGray-400 uppercase font-semibold"
+    >
+      Price {{ itemObject.price }} EURO
+    </p>
+<!--    PRICE: {{ itemObject.price }} <br>-->
     <br>
     <input type="number" value="1" v-model="itemQuantity">
     <!--    <button v-on:click="addOrderItemToDatabase">   ADD TO CART</button>-->

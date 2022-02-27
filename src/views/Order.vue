@@ -15,7 +15,8 @@
 <!--    <img alt="Vue logo" src="../assets/logo.png">-->
     <br>
     <br>
-    <h1>Shopping cart</h1>
+    <h5 class="text-xl font-bold">Shopping cart</h5>
+<!--    <h1>Shopping cart</h1>-->
     <br>
     Order №: {{ orderNumber }}
     <br>
@@ -98,9 +99,13 @@
     <br>
     <br>
     <br>
-    <span>Total price: {{ totalPrice }} </span>
-    <br>
-    <br>
+    <p
+        class="mt-1 text-sm text-blueGray-400 uppercase font-semibold"
+    >
+      Total price: {{ totalPrice }} EURO
+    </p>
+<!--    <span>Total price: {{ totalPrice }} </span>-->
+
 <!--    <button v-on:click="postOrderAndRedirectHome">CONFIRM</button>-->
     <br>
     <br>
