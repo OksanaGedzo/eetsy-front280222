@@ -388,7 +388,7 @@ export default {
 
 .itemGallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   grid-gap: 1rem;
   max-width: 50%;
   margin: 1rem auto;
@@ -401,7 +401,7 @@ export default {
 }
 
 .itemGallery-panel img {
-  height: 100px;
+  height: 150px;
   width: auto;
   object-fit: cover;
   border: 1px solid;

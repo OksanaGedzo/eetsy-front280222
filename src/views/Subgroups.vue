@@ -5,7 +5,7 @@
     <div class="gallery">
       <div class="gallery-panel" v-for="subCategory in subGroupObjects"
            v-on:click="redirectToItemsPageWith(subCategory.name)">
-        <img src="..\assets\logo.png">
+        <img :src="subCategory.pictureData">
         <div class="item-grid">
           {{ subCategory.name }}<br>
 

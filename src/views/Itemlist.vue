@@ -5,7 +5,7 @@
     <div class="gallery">
       <div class="gallery-panel" v-for="item in itemObjects" role="button"
            v-on:click="redirectToProductPage(item.itemId)">
-        <img src="..\assets\logo.png">
+        <img :src="item.itemPictureData">
         Item id: {{item.itemId}}<br>
         Price: {{ item.itemPrice }}<br>
         Description: {{ item.itemDescription }}

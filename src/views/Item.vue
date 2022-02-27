@@ -1,12 +1,17 @@
 <template>
   <div>
 
+    <div class="itemGallery">
+      <div class="itemGallery-panel" v-for="image in itemObject.pictures">
+        <img :src="image.data"><br>
+      </div>
+    </div>
+
     ITEM TITLE: {{ itemObject.name }} <br>
     ITEM SELLER: {{ itemObject.sellerName }} <br>
     ITEM DESCRIPTION: {{ itemObject.description }} <br>
     ITEM PRICE: {{ itemObject.price }} <br>
-    PILT: siia tuleb pilt
-    <input type="number" value="1" v-model="itemQuantity">
+    <input style="text-align: center" type="number" value="1" v-model="itemQuantity"> <br>
     <button v-on:click="addOrderItemToDatabase"> ADD TO CART</button>
 
   </div>
@@ -20,7 +25,7 @@ export default {
     return {
       itemId: this.$route.query.id,
       itemObject: {},
-      itemQuantity: '',
+      itemQuantity: 1,
       userIsLoggedIn: false,
       itemObjectRequest: {
         "userId": null,
