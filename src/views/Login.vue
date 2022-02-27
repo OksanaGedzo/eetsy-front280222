@@ -65,16 +65,16 @@
         </div>
       </div>
     </section>
-<!--    Enter login details-->
-<!--    <div>-->
-<!--      User Name <input v-model="userName">-->
-<!--      User Password <input type="password" v-model="userPassword">-->
-<!--      <br>-->
-<!--      <br>-->
-<!--      <button v-on:click="loginUser()">LOG IN</button>-->
-<!--      <br>-->
+    <!--    Enter login details-->
+    <!--    <div>-->
+    <!--      User Name <input v-model="userName">-->
+    <!--      User Password <input type="password" v-model="userPassword">-->
+    <!--      <br>-->
+    <!--      <br>-->
+    <!--      <button v-on:click="loginUser()">LOG IN</button>-->
+    <!--      <br>-->
 
-<!--    </div>-->
+    <!--    </div>-->
 
     <br>
     <footer class="block py-4">
@@ -206,3 +206,4 @@ export default {
 <!--<style scoped>-->
 
 <!--</style>-->
+

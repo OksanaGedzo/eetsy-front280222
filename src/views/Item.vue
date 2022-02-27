@@ -8,7 +8,7 @@
               :style="`background-image: url('https://viraito.ee/wp-content/uploads/2019/11/banner01-2048x798.jpg');`"
           ></div>
           <router-view />
-<!--          <footer-small absolute />-->
+          <!--          <footer-small absolute />-->
         </section>
       </main>
     </div> <section class="pb-20 bg-blueGray-200 -mt-24">
@@ -27,7 +27,7 @@
               </div>
               <h6 class="text-xl font-semibold"> Point 1 <br></h6>
               <p class="mt-2 mb-4 text-blueGray-500">
-               Handcraft
+                Handcraft
               </p>
             </div>
           </div>
@@ -63,7 +63,7 @@
               </div>
               <h6 class="text-xl font-semibold"> Point 3 <br></h6>
               <p class="mt-2 mb-4 text-blueGray-500">
-               Unique
+                Unique
 
 
               </p>
@@ -91,6 +91,19 @@
               class="text-lg font-light leading-relaxed mt-0 mb-4 text-blueGray-600"
           >
             Title from database: {{ itemObject.name }}
+
+            Material: 20% merino, 80% cotton
+
+            A soft, lightweight and warm hat made of high-quality Estonian yarn.
+            Perfect for cool weather all year round. It is easy to combine it with a coat, jacket or blazer.
+            Looks good on both men and women.
+            There is an additional invisible elastic in the brim.
+            Attached to the brim, there is a white cotton ribbon of 2.5 x 12 cm with the University of Tartu logo.
+            The long ribbon allows folding the brim twice.
+            The hat has been designed in Estonia and handmade following the zero-waste method.
+            Machine washable at a low spin cycle. Not prone to pilling in wear or wash.
+
+
           </p>
           <router-link to="/" class="font-bold text-blueGray-700 mt-8">
             Be unique!
@@ -170,16 +183,34 @@
               <h3 class="text-3xl font-semibold">A growing Estonian company</h3>
               <p class="mt-4 text-lg leading-relaxed text-blueGray-500">
                 About seller from database: {{ itemObject.sellerName }}
+
+                Mekoome comes from „me koome“ („we knit“ in Estonian) and means that we make knitwear.
+
+                In 2016, Larissa Kondina, an architect by training, decided to create a brand of knitted clothes.
+                She wanted to join her knitting hobby and the digital design skills she acquired while studying architecture
+                at the Estonian Academy of Arts and the University of Applied Arts Vienna.
+
+                Mekoome creates high-quality and durable products with elaborate design.
+                The entire production process takes place in our Tallinn studio – from design to the knitting of finished products,
+                ensuring excellent flexibility. The limited number of manufactured products and an individual approach to customers’
+                needs allow us to ensure the quality of products.
+
+                As we carefully select the best yarns, our knits are durable, soft and pleasant to touch.
+                Even after several years of active use, they will retain their shape and will not lose their beauty.
+
+                We follow the principle of zero-waste production: we aim for the rational use of resources and respect
+                the world around us. We do not simply cut out parts from knitted fabric, throwing out the scraps.
+                Each piece is knitted to shape and only 3-4 cm long yarn ends remain, which will also find use.
               </p>
               <ul class="list-none mt-6">
                 <li class="py-2">
                   <div class="flex items-center">
                     <div>
-                        <span
-                            class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-emerald-600 bg-emerald-200 mr-3"
-                        >
-                          <i class="fas fa-fingerprint"></i>
-                        </span>
+                       <span
+                           class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-emerald-600 bg-emerald-200 mr-3"
+                       >
+                         <i class="fas fa-fingerprint"></i>
+                       </span>
                     </div>
                     <div>
                       <h4 class="text-blueGray-500">
@@ -191,11 +222,11 @@
                 <li class="py-2">
                   <div class="flex items-center">
                     <div>
-                        <span
-                            class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-emerald-600 bg-emerald-200 mr-3"
-                        >
-                          <i class="fab fa-html5"></i>
-                        </span>
+                       <span
+                           class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-emerald-600 bg-emerald-200 mr-3"
+                       >
+                         <i class="fab fa-html5"></i>
+                       </span>
                     </div>
                     <div>
                       <h4 class="text-blueGray-500">
@@ -207,11 +238,11 @@
                 <li class="py-2">
                   <div class="flex items-center">
                     <div>
-                        <span
-                            class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-emerald-600 bg-emerald-200 mr-3"
-                        >
-                          <i class="far fa-paper-plane"></i>
-                        </span>
+                       <span
+                           class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-emerald-600 bg-emerald-200 mr-3"
+                       >
+                         <i class="far fa-paper-plane"></i>
+                       </span>
                     </div>
                     <div>
                       <h4 class="text-blueGray-500">Dynamic components</h4>
@@ -232,8 +263,8 @@
     PRICE: {{ itemObject.price }} <br>
     <br>
     <input type="number" value="1" v-model="itemQuantity">
-<!--    <button v-on:click="addOrderItemToDatabase">   ADD TO CART</button>-->
-<!--    <br>-->
+    <!--    <button v-on:click="addOrderItemToDatabase">   ADD TO CART</button>-->
+    <!--    <br>-->
 
     <button
         class="bg-emerald-500 text-white active:bg-emerald-600 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
@@ -247,11 +278,11 @@
     <br>
     <br>
     <br>
-<!--    <br>-->
-<!--    <input type="number" value="1" v-model="itemQuantity">-->
-<!--    <button v-on:click="addOrderItemToDatabase">   ADD TO CART</button>-->
-<!--    <br>-->
-<!--    <br>-->
+    <!--    <br>-->
+    <!--    <input type="number" value="1" v-model="itemQuantity">-->
+    <!--    <button v-on:click="addOrderItemToDatabase">   ADD TO CART</button>-->
+    <!--    <br>-->
+    <!--    <br>-->
 
 
     <footer class="block py-4">
@@ -391,4 +422,5 @@ export default {
   }
 }
 </script>
+
 

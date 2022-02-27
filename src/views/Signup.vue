@@ -1,13 +1,13 @@
 <template>
   <div>
-<!--    <navbar/>-->
+    <!--    <navbar/>-->
     <main class="profile-page">
       <section class="relative block h-500-px">
         <div
             class="absolute top-0 w-full h-full bg-center bg-cover"
             style="
-            background-image: url('https://viraito.ee/wp-content/uploads/2019/11/banner01-2048x798.jpg');
-          "
+           background-image: url('https://viraito.ee/wp-content/uploads/2019/11/banner01-2048x798.jpg');
+         "
         >
           <!--          <span-->
           <!--              id="blackOverlay"-->
@@ -67,27 +67,27 @@
                 <div class="w-full lg:w-4/12 px-4 lg:order-1">
                   <div class="flex justify-center py-4 lg:pt-4 pt-8">
                     <div class="mr-4 p-3 text-center">
-                      <span
-                          class="text-xl font-bold block uppercase tracking-wide text-blueGray-600"
-                      >
-                        118
-                      </span>
+                     <span
+                         class="text-xl font-bold block uppercase tracking-wide text-blueGray-600"
+                     >
+                       118
+                     </span>
                       <span class="text-sm text-blueGray-400">Sellers</span>
                     </div>
                     <div class="mr-4 p-3 text-center">
-                      <span
-                          class="text-xl font-bold block uppercase tracking-wide text-blueGray-600"
-                      >
-                        1289
-                      </span>
+                     <span
+                         class="text-xl font-bold block uppercase tracking-wide text-blueGray-600"
+                     >
+                       1289
+                     </span>
                       <span class="text-sm text-blueGray-400">Goods</span>
                     </div>
                     <div class="lg:mr-4 p-3 text-center">
-                      <span
-                          class="text-xl font-bold block uppercase tracking-wide text-blueGray-600"
-                      >
-                        50278
-                      </span>
+                     <span
+                         class="text-xl font-bold block uppercase tracking-wide text-blueGray-600"
+                     >
+                       50278
+                     </span>
                       <span class="text-sm text-blueGray-400">Deals</span>
                     </div>
                   </div>
@@ -127,7 +127,7 @@
                   <i
                       class="fas fa-university mr-2 text-lg text-blueGray-400"
                   ></i>
-<!--                  Tere tulemast!-->
+                  <!--                  Tere tulemast!-->
                 </div>
               </div>
               <div class="mt-10 py-10 border-t border-blueGray-200 text-center">
@@ -149,12 +149,12 @@
                               Welcome!
                             </p>
                             <div class="relative w-full mb-3 mt-8">
-<!--                              <label-->
-<!--                                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"-->
-<!--                                  htmlFor="full-name"-->
-<!--                              >-->
-<!--                                User Name-->
-<!--                              </label>-->
+                              <!--                              <label-->
+                              <!--                                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"-->
+                              <!--                                  htmlFor="full-name"-->
+                              <!--                              >-->
+                              <!--                                User Name-->
+                              <!--                              </label>-->
                               <input
                                   type="text"
                                   class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -298,7 +298,7 @@
         </div>
       </section>
     </main>
-<!--    <footer-component/>-->
+    <!--    <footer-component/>-->
     <footer class="block py-4">
       <div class="container mx-auto px-4">
         <hr class="mb-4 border-b-1 border-blueGray-200"/>
@@ -442,3 +442,4 @@ export default {
 <style scoped>
 
 </style>
+

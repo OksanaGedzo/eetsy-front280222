@@ -1,3 +1,6 @@
+
+
+
 <template>
   <div class="home">
     <div>
@@ -11,21 +14,21 @@
             <div
                 class="relative pt-32 pb-20 flex content-center items-center justify-center min-h-screen"
             >
-            <div class="container relative mx-auto">
-              <div class="items-center flex flex-wrap">
-                <div class="w-full lg:w-8/12 px-4 ml-auto mr-auto text-center">
-                  <div class="pr-12">
-                    <h1 class="text-white font-semibold text-5xl">
-                      My favourite Estonian goods
-                    </h1>
-                    <p class="mt-4 text-lg text-white">
-                      Find something memorable, join a community doing good.
+              <div class="container relative mx-auto">
+                <div class="items-center flex flex-wrap">
+                  <div class="w-full lg:w-8/12 px-4 ml-auto mr-auto text-center">
+                    <div class="pr-12">
+                      <h1 class="text-white font-semibold text-5xl">
+                        My favorite Estonian goods
+                      </h1>
+                      <p class="mt-4 text-lg text-white">
+                        Find something memorable, join a community doing good.
 
-                    </p>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             </div>
 
           </div>
@@ -40,7 +43,7 @@
           <div class="w-full lg:w-6/12 px-4">
             <h2 class="text-4xl font-semibold">Made with love</h2>
             <p class="text-lg leading-relaxed m-4 text-blueGray-500">
-              Take a piece of Estonia with you, whether in the form of a pair of hand-knitted woollen socks,
+              Take a piece of Estonia with you wherever you are, whether in the form of a pair of hand-knitted woollen socks,
               playful mittens, carved wooden mugs, felt hats, juniper coasters or rustic jewellery.
             </p>
           </div>
@@ -444,3 +447,4 @@ export default {
   }
 }
 </script>
+

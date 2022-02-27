@@ -8,7 +8,7 @@
               :style="`background-image: url('https://viraito.ee/wp-content/uploads/2019/11/banner01-2048x798.jpg');`"
           ></div>
           <router-view />
-<!--          <footer-small absolute />-->
+          <!--          <footer-small absolute />-->
         </section>
       </main>
     </div>
@@ -17,11 +17,9 @@
       <div class="container mx-auto px-4">
         <div class="flex flex-wrap justify-center text-center mb-24">
           <div class="w-full lg:w-6/12 px-4" >
-            <h2 class="text-4xl font-semibold">Here are our heroes</h2>
+            <h2 class="text-4xl font-semibold">Here are our favorites</h2>
             <p class="text-lg leading-relaxed m-4 text-blueGray-500">
-              According to the National Oceanic and Atmospheric
-              Administration, Ted, Scambos, NSIDClead scentist, puts the
-              potentially record maximum.
+              Best of best
             </p>
           </div>
         </div>
@@ -153,18 +151,18 @@
         </div>
       </div>
     </section>
-<!--    {{ this.primaryGroupId }}-->
+    <!--    {{ this.primaryGroupId }}-->
 
-<!--    <div class="gallery">-->
-<!--      <div class="gallery-panel" v-for="subCategory in subGroupObjects"-->
-<!--           v-on:click="redirectToItemsPageWith(subCategory.name)">-->
-<!--        <img src="..\assets\logo.png">-->
-<!--        <div class="item-grid">-->
-<!--          {{ subCategory.name }}<br>-->
+    <!--    <div class="gallery">-->
+    <!--      <div class="gallery-panel" v-for="subCategory in subGroupObjects"-->
+    <!--           v-on:click="redirectToItemsPageWith(subCategory.name)">-->
+    <!--        <img src="..\assets\logo.png">-->
+    <!--        <div class="item-grid">-->
+    <!--          {{ subCategory.name }}<br>-->
 
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
 
 
 
@@ -286,4 +284,5 @@ export default {
   }
 }
 </script>
+
 
