@@ -56,38 +56,38 @@
                         class="bg-emerald-500 active:bg-emerald-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                         type="button"
                     >
-                      My googs
+                      My goods
                     </button>
                   </div>
                 </div>
-                                <div class="w-full lg:w-4/12 px-4 lg:order-1">
-                                  <div class="flex justify-center py-4 lg:pt-4 pt-8">
-                                    <div class="mr-4 p-3 text-center">
+                <div class="w-full lg:w-4/12 px-4 lg:order-1">
+                  <div class="flex justify-center py-4 lg:pt-4 pt-8">
+                    <div class="mr-4 p-3 text-center">
                                      <span
                                          class="text-xl font-bold block uppercase tracking-wide text-blueGray-600"
                                      >
                                        58
                                      </span>
-                                      <span class="text-sm text-blueGray-400">Happy customers</span>
-                                    </div>
-                                    <div class="mr-4 p-3 text-center">
+                      <span class="text-sm text-blueGray-400">Happy customers</span>
+                    </div>
+                    <div class="mr-4 p-3 text-center">
                                      <span
                                          class="text-xl font-bold block uppercase tracking-wide text-blueGray-600"
                                      >
                                        118
                                      </span>
-                                      <span class="text-sm text-blueGray-400">Goods</span>
-                                    </div>
-                                    <div class="lg:mr-4 p-3 text-center">
+                      <span class="text-sm text-blueGray-400">Goods</span>
+                    </div>
+                    <div class="lg:mr-4 p-3 text-center">
                                      <span
                                          class="text-xl font-bold block uppercase tracking-wide text-blueGray-600"
                                      >
                                        1788
                                      </span>
-                                      <span class="text-sm text-blueGray-400">Likes</span>
-                                    </div>
-                                  </div>
-                                </div>
+                      <span class="text-sm text-blueGray-400">Likes</span>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="text-center mt-12">
                 <h3
@@ -129,29 +129,19 @@
                         >
                           <div class="flex-auto p-5 lg:p-10">
                             <h4 class="text-2xl font-semibold">My database</h4>
-                            <p class="leading-relaxed mt-1 mb-4 text-blueGray-500">Appload something beautiful</p>
-                            <br>
-                            <div>
-                              <input class="bg-emerald-500 active:bg-emerald-600 uppercase text-white font-bold hover:shadow-md shadow text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                     type="file" @change="handleImage" accept="image/x-png,image/jpeg">
-                              <br>
-                              <br>
-                              <img :src="piltObject.data"> <br>
-                              <button class="bg-emerald-500 active:bg-emerald-600 uppercase text-white font-bold hover:shadow-md shadow text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                      type="button"  v-on:click="sendImageDataToBackend">Upload To Database</button>
-                              <br>
-                              <br>
-                              <img :src="piltBackendist">
-                              <br>
-                              <button class="bg-emerald-500 active:bg-emerald-600 uppercase text-white font-bold hover:shadow-md shadow text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                      type="button" v-on:click="requestLastImgFromBackend">Receive Last Image From Database</button>
-                            </div>
-                            <br>
                             <br>
                             <div>
                               <ul>
-                                <router-link class="bg-emerald-500 active:bg-emerald-600 uppercase text-white font-bold hover:shadow-md shadow text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                             type="button"  to="/itemCrud">Add or Edit or Remove Items</router-link>
+                                <router-link
+                                    class="bg-emerald-500 active:bg-emerald-600 uppercase text-white font-bold hover:shadow-md shadow text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                    type="button" to="/itemCrud">Add or Edit or Remove Items
+                                </router-link>
+                              </ul>
+                              <ul>
+                                <router-link
+                                    class="bg-emerald-500 active:bg-emerald-600 uppercase text-white font-bold hover:shadow-md shadow text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                    type="button" to="/PrimaryGroupCrud">Add or Edit or Remove Primary Groups
+                                </router-link>
                               </ul>
                             </div>
 
@@ -236,63 +226,5 @@
 <script>
 export default {
   name: "Admin",
-  data() {
-    return {
-      pilt: null,
-      piltBackendist: null,
-      piltObject: {
-        "data": null
-      },
-    }
-  },
-  methods: {
-    handleImage(event) {
-      const selectedImage = event.target.files[0];
-      this.createBase64Image(selectedImage);
-    },
-
-    redirectToItemCrud: function () {
-      this.$router.push({name: 'ItemCrud'})
-    },
-
-    createBase64Image(fileObject) {
-      //reader tundub töötavat tagurpidi? Enne läheb käima kõige viimane rida reader.readAsDataURL(fileObject) ... vist
-      const reader = new FileReader();
-      reader.onload = () => {
-        //pärast *edukat* laadimist antakse meie 'pilt' failile tema lõplik väärtus ning konsooli prinditakse testiks toores info
-        this.piltObject.data = reader.result;
-        console.log(this.piltObject)
-      };
-      reader.onerror = function (error) {
-        alert(error);
-      }
-      reader.readAsDataURL(fileObject);
-    },
-
-    sendImageDataToBackend: function () {
-      this.$http.post("/upload/image", this.piltObject
-      ).then(response => {
-        console.log(this.piltObject)
-        console.log(response.data)
-      }).catch(error => {
-        console.log(error)
-      })
-    },
-
-    requestLastImgFromBackend: function () {
-      this.$http.get("/receive/image", {}
-      ).then(response => {
-        this.piltBackendist = response.data.data //lgtm
-        console.log(response.data)
-      }).catch(error => {
-        console.log(error)
-      })
-    },
-
-  }
 }
 </script>
-
-<!--<style scoped>-->
-
-<!--</style>-->

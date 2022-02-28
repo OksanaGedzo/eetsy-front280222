@@ -7,173 +7,50 @@
               class="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-cover"
               :style="`background-image: url('https://viraito.ee/wp-content/uploads/2019/11/banner01-2048x798.jpg');`"
           ></div>
-          <router-view />
+          <router-view/>
           <!--          <footer-small absolute />-->
         </section>
       </main>
     </div>
-    <section class="pt-20 pb-48" >
+    <section class="pt-20 pb-48">
       <div class="container mx-auto px-4">
         <div class="flex flex-wrap justify-center text-center mb-24">
-          <div class="w-full lg:w-6/12 px-4" >
+          <div class="w-full lg:w-6/12 px-4">
             <h2 class="text-4xl font-semibold">Choose your favorite</h2>
             <p class="text-lg leading-relaxed m-4 text-blueGray-500">
               and shop now
             </p>
           </div>
         </div>
-        <div class="flex flex-wrap"  >
-          <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4" >
-            <div class="px-6" v-for="item in itemObjects">
+            <div class="gallery" v-for="item in itemObjects">
               <img
                   alt="..."
                   class="max-w-full rounded-lg shadow-lg"
-                  :src="item.itemPictureData">
-
-<!--    <div class="gallery">-->
-<!--      <div class="gallery-panel" v-for="item in itemObjects" role="button"-->
-<!--           v-on:click="redirectToProductPage(item.itemId)">-->
-<!--        <img :src="item.itemPictureData">-->
-<!--        Item id: {{item.itemId}}<br>-->
-<!--        Price: {{ item.itemPrice }}<br>-->
-<!--        Description: {{ item.itemDescription }}-->
-<!--      </div>-->
-<!--    </div>-->
-              />
-              <div class="pt-6 text-center"  >
-                <h5 class="text-xl font-bold" >National woolen hat</h5>
-                <p
-                    class="mt-1 text-sm text-blueGray-400 uppercase font-semibold"
-                >
-<!--                  todo VORMINDA ÜMBER-->
-                  10 euro
-                </p>
-                <!--                {{ this.userId }}-->
-                <!--                <div class="gallery">-->
-                <!--                  <div class="gallery-panel" v-for="category in primaryGroupObjects"-->
-                <!--                       v-on:click="redirectToSubgroupPageWith(category.id)">-->
-                <!--                    <img src="..\assets\logo.png">-->
-                <!--                    {{ category.name }}-->
-                <!--                  </div>-->
-                <!--                </div>-->
-                <div class="mt-6" >
-                  <div class="py-6 px-3 mt-32 sm:mt-0" >
-                    <button class="bg-emerald-500 active:bg-emerald-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
-
-                            v-on:click="redirectToProductPage(item.itemId)">
-                      <!--                      {{ category.name }}-->
-                      <!--&lt;!&ndash;                        type="button"&ndash;&gt;-->
-                      <!--                    >-->
-                      Shop now
-
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-            <div class="px-6">
-              <img
-                  alt="..."
-                  class="max-w-full rounded-lg shadow-lg"
-                  src="https://lh3.googleusercontent.com/pw/AM-JKLUfH9yAmXjTt8TeRzjII5iBGxOpAnsUUXJPuamH0gezQBhQVgUuuDeJNOsEGE4EAiK7wnX5Sdme1HTk2fntR5D9_xJBXazT0a4ixqnsI7jm9y_0jKtSszKUbfm1y5H5cfWsCk6cK9iPeK6OtJMKQ3nC=w766-h767-no?authuser=0"
-
-              />
+                  :src="item.itemPictureData"
+              >
               <div class="pt-6 text-center">
-                <h5 class="text-xl font-bold">Fur hat with tassel</h5>
+                <h5 class="text-xl font-bold">{{ item.itemName }}</h5>
                 <p
                     class="mt-1 text-sm text-blueGray-400 uppercase font-semibold"
                 >
-                  59 euro
+                  {{ item.itemPrice }} €
                 </p>
                 <div class="mt-6">
-                  <div class="py-6 px-3 mt-32 sm:mt-0">
-                    <button
-                        class="bg-emerald-500 active:bg-emerald-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
-                        type="button"
-                    >
-                      Shop now
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-            <div class="px-6">
-              <img
-                  alt="..."
-                  class="max-w-full rounded-lg shadow-lg"
-                  src="https://lh3.googleusercontent.com/pw/AM-JKLXhSoP-OzST7n0m656bQjnbPJpWJ7g7dyZxCjtXfeMI0qnVncLnxVuFzPOSxl3aGJ4Nmae-jmDKix6ExUw7Q7Ybf0wzy5njLp_cIxKvessL3Gi_5bNSTr9ZlF0x1IxO-xnPzL4PGErvS-rDW3PyQPpb=w904-h903-no?authuser=0"
+                  <button
+                      class="bg-emerald-500 active:bg-emerald-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
 
-              />
-              <div class="pt-6 text-center">
-                <h5 class="text-xl font-bold">Long hat with a scarf, national pattern</h5>
-                <p
-                    class="mt-1 text-sm text-blueGray-400 uppercase font-semibold"
-                >
-                  69 euro
-                </p>
-                <div class="mt-6">
-                  <div class="py-6 px-3 mt-32 sm:mt-0">
-                    <button
-                        class="bg-emerald-500 active:bg-emerald-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
-                        type="button"
-                    >
-                      Shop now
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-            <div class="px-6">
-              <img
-                  alt="..."
-                  class="max-w-full rounded-lg shadow-lg"
-                  src="https://lh3.googleusercontent.com/pw/AM-JKLV_aoZ05j9Prvg_H4ayzUX-IbX0_c-omZXlFSLwiBktqUHzqLkq9J9HvKRbhGpMtstnLnpxQ8SvH-vmBReLKU7TS_Qv0s9FUCPEmGTiJO3ipujs_mw8ub5hGrVfVVMrLJqC_dBya7Q6NgjzrmgTcXYt=s903-no?authuser=0"
+                      v-on:click="redirectToProductPage(item.itemId)">
+                    Shop now
 
-              />
-              <div class="pt-6 text-center">
-                <h5 class="text-xl font-bold">Men'n national woolen hat</h5>
-                <p
-                    class="mt-1 text-sm text-blueGray-400 uppercase font-semibold"
-                >
-                  59 euro
-                </p>
-                <div class="mt-6">
-                  <div class="py-6 px-3 mt-32 sm:mt-0">
-                    <button
-                        class="bg-emerald-500 active:bg-emerald-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
-                        type="button"
-                    >
-                      Shop now
-                    </button>
-                  </div>
-
-                </div>
-              </div>
+                  </button>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!--    {{ this.subGroupName }}-->
-
-    <!--    <div class="gallery">-->
-    <!--      <div class="gallery-panel" v-for="item in itemObjects" role="button"-->
-    <!--           v-on:click="redirectToProductPage(item.itemId)">-->
-    <!--        <img src="..\assets\logo.png">-->
-    <!--        Item id: {{item.itemId}}<br>-->
-    <!--        Price: {{ item.itemPrice }}<br>-->
-    <!--        Description: {{ item.itemDescription }}-->
-    <!--      </div>-->
-    <!--    </div>-->
     <footer class="block py-4">
       <div class="container mx-auto px-4">
-        <hr class="mb-4 border-b-1 border-blueGray-200" />
+        <hr class="mb-4 border-b-1 border-blueGray-200"/>
         <div
             class="flex flex-wrap items-center md:justify-between justify-center"
         >
