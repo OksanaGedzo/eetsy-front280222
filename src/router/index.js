@@ -10,6 +10,7 @@ import Order from "@/views/Order";
 import Admin from "@/views/Admin";
 import Account from "@/views/Account";
 import ItemCrud from "@/views/ItemCrud";
+import PrimaryGroupCrud from "@/views/PrimaryGroupCrud";
 
 Vue.use(VueRouter)
 
@@ -18,6 +19,11 @@ const routes = [
     path: '/account',
     name: 'Account',
     component: Account
+  },
+  {
+    path: '/primaryGroupCrud',
+    name: 'PrimaryGroupCrud',
+    component: PrimaryGroupCrud
   },
   {
     path: '/admin',

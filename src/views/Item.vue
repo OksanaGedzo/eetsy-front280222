@@ -12,6 +12,13 @@
         </section>
       </main>
     </div> <section class="pb-20 bg-blueGray-200 -mt-24">
+<!--todo-->
+    <div class="itemGallery">
+      <div class="itemGallery-panel" v-for="image in itemObject.pictures">
+        <img :src="image.data"><br>
+      </div>
+    </div>
+    <!--todo-->
 
     <div class="container mx-auto px-4">
       <div class="flex flex-wrap">
@@ -27,6 +34,7 @@
               </div>
               <h6 class="text-xl font-semibold"> Point 1 <br></h6>
               <p class="mt-2 mb-4 text-blueGray-500">
+<!--                TODO POINT TO PRIMARY GROUP-->
                 Handcraft
               </p>
             </div>
@@ -363,7 +371,7 @@ export default {
     return {
       itemId: this.$route.query.id,
       itemObject: {},
-      itemQuantity: '',
+      itemQuantity: 1,
       userIsLoggedIn: false,
       itemObjectRequest: {
         "userId": null,
@@ -427,5 +435,4 @@ export default {
   }
 }
 </script>
-
 

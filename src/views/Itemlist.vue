@@ -28,14 +28,24 @@
               <img
                   alt="..."
                   class="max-w-full rounded-lg shadow-lg"
-                  src="https://lh3.googleusercontent.com/5rWgBQiz1hhEIFs4z0ThpkQwZzmOE6gQCKAVB7jNnjIV-uMs7tZHnGe_J2vYkUkqKo_o49Ep47M38KPM8kV4OkzhzebQmmOPMzO6AdW92yQ_SCmxM2zd3TXMkro8XphVa-GSEO7I1tcq1c-qHjjsOBI3TlO3_xbfDiq7fR7OD6_BnQzl_SpmXlXqgwo_oydfnOBXKray_QfrPpWfm-vDdzXeCM629heI2Fp9elJ9U2fLByxU0GJEmU8gxLM7PxmntDV3oKSBIHM7yjoI4KFGXwgnDDuu1N51t_qLzQpH6E8KlLUWkGx67wv0UR22Or2t-V_0tHFRWAT3uUYualH8_GMNZsOyc9rBStB1UN7SAx3AB7UVdnuax9ElIxMG133OC4igaAySlPxWQlMTzk6YKinRqtDjzxA8ZSM6g1PbTg3QMPzicweXH1VnGJlXNAd98A1OM63Kowiqsxp1t4SGpxO_Hl5CEbnsK4z0zg-tsmf-wSe8Q2NKVQOClywcKcyoDqvAOneNEF_3JP5x6jivH-K_XSOC5JLnwj3AHBhouk9xnQ2enGpAYKACj1bC5oDrVLFMMO-ZOLKr9boNVRzuzRAfEgcVQLGk0z_fBg7b66L9Inmnxe3C6PsmhmS5STKOvnHz1IX1ZbP38MgqPTcsUN3UMi48bmWcjVDVMjJCfadjuU26c3Z6wXriyFvTaRohG-1bpb6JoE5WlBVkRgXiP2Zo=s903-no?authuser=0"
+                  :src="item.itemPictureData">
 
+<!--    <div class="gallery">-->
+<!--      <div class="gallery-panel" v-for="item in itemObjects" role="button"-->
+<!--           v-on:click="redirectToProductPage(item.itemId)">-->
+<!--        <img :src="item.itemPictureData">-->
+<!--        Item id: {{item.itemId}}<br>-->
+<!--        Price: {{ item.itemPrice }}<br>-->
+<!--        Description: {{ item.itemDescription }}-->
+<!--      </div>-->
+<!--    </div>-->
               />
               <div class="pt-6 text-center"  >
                 <h5 class="text-xl font-bold" >National woolen hat</h5>
                 <p
                     class="mt-1 text-sm text-blueGray-400 uppercase font-semibold"
                 >
+<!--                  todo VORMINDA ÜMBER-->
                   10 euro
                 </p>
                 <!--                {{ this.userId }}-->
@@ -280,8 +290,3 @@ export default {
   }
 }
 </script>
-
-<!--<style scoped>-->
-
-<!--</style>-->
-
